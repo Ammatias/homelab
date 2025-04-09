@@ -1,0 +1,25 @@
+services:
+  scrutiny:
+    container_name: scrutiny
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    ports:
+      - "8095:8080" # webapp
+      - "8096:8086" # influxDB admin
+    volumes:
+      - /run/udev:/run/udev:ro
+      - ./:/opt/scrutiny/config
+      - ./influxdb:/opt/scrutiny/influxdb
+    devices:
+      - /dev/sata1:/dev/sata1
+      - /dev/sata2:/dev/sata2
+      - /dev/sata3:/dev/sata4
+    environment:
+      - SCRUTINY_WEB_INFLUXDB_TOKEN=ANYLONGSTRING
+      - SCRUTINY_WEB_INFLUXDB_INIT_USERNAME=${USERNAME}
+      - SCRUTINY_WEB_INFLUXDB_INIT_PASSWORD=${PASSWORD}
+    env_file:
+      - .env
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+version: 1
+host:
+  id: "SynologyNas"
+devices:
+  - device: /dev/sata1
+    type: 'sat'
+  - device: /dev/sata2
+    type: 'sat'
+  - device: /dev/sata4
+    type: 'sat'
