@@ -97,16 +97,6 @@
             url: https://you.domein.com
             slug: publicservices
 
-    - Prometheus:
-        href: https://you.domein.com
-        description: prometheus-1 on pmx-node-1
-        icon: prometheus.png
-        server: pmx-node-1
-        container: prometheus-1
-        widget:
-            type: prometheus
-            url: https://you.domein.com
-
 
 
 - Security and Identity:
@@ -127,20 +117,10 @@
 
 
 - Automation:
-    - Kestra:
-        href: https://you.domein.com
-        description: kestra-1 on pmx-node-1
-        icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
-
     - Ansible Semaphore:
         href: https://you.domein.com
         description: ansiblesemaphore-1 on pmx-node-1
         icon: si-ansible-#EE0000
-
-    - ArgoCD:
-        href: https://you.domein.com
-        description: argocd-1 on pmx-node-1
-        icon: si-argo-#EF7B4D
 
 
 
