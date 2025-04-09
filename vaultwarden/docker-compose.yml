@@ -1,0 +1,13 @@
+---
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    volumes:
+      - ./data:/data/
+    restart: unless-stopped
+    ports:
+      - 80:80
+    security_opt:
+      - no-new-privileges:true
