@@ -1,0 +1,26 @@
+---
+- resources:
+    label: System
+    cpu: true
+    memory: true
+
+- search:
+    provider: google
+    target: _blank
+  
+- datetime:
+    text_size: x1
+    format:
+        dateStyle: medium
+        timeStyle: medium
+        hourCycle: h23
+
+- openmeteo:
+    label: Yekaterinburg
+    latitude: 61.0042
+    longitude: 69.0019
+    timezone: Asia/Yekaterinburg 
+    units: metric 
+    cache: 5 
+    format: 
+      maximumFractionDigits: 1

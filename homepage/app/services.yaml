@@ -1,0 +1,165 @@
+---
+- Networking:         
+    - Keenetic Giant:
+        href: https://you.domein.com
+        icon: keenetic-alt.png
+        description: router
+        siteMonitor: https://you.domein.com
+            
+    - NFQWS:
+        href: https://you.domein.com
+        icon: keenetic-alt.png
+        description: nfqws on Keenetic Giant
+        siteMonitor: https://you.domein.com
+
+
+
+- Infrastructure and Data:
+    - Synology Disk Station:
+        href: https://you.domein.com
+        icon: synology-dsm.png
+        description: synology-dsm
+        siteMonitor: https://you.domein.com
+        widget:
+            type: diskstation
+            url: https://you.domein.com
+            username: you_monitor_user
+            password: you_monitor_user
+            volume: volume_N
+
+    - Proxmox:
+        href: https://you.domein.com
+        icon: proxmox.png
+        description: pmx-node-1
+        siteMonitor: https://you.domein.com
+        widget:
+            type: proxmox
+            url: https://you.domein.com
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+
+
+
+- Management:
+    - Portainer:
+        href: https://you.domein.com
+        icon: portainer.png
+        description: portainer-1 on pmx-node-1
+        #widget:
+            type: portainer
+            url: https://you.domein.com
+            env: 2
+            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
+
+    - Dockge:
+        href: https://dockge.ammatias.synology.me:4443
+        icon: si-docker-#2496ED
+        description: dockge-1 on pmx-node-1
+
+    - Synology Download Station:
+        href: https://you.domein.com
+        icon: synology-download-station.png
+        description: download-station on synology-dsm
+        siteMonitor: https://you.domein.com
+        widget:
+            type: downloadstation
+            url: https://you.domein.com
+            username: you_monitor_user
+            password: you_monitor_user       
+
+
+
+- Monitoring:
+    -  ___________________________________________:
+        widget:
+            type: calendar
+            firstDayInWeek: monday
+            view: monthly
+            maxEvents: 10
+            showTime: true
+            timezone: Asia/Yekaterinburg
+            
+    - Scrutiny:
+        href: https://you.domein.com
+        icon: scrutiny.png
+        description: scrutiny on synology-dsm
+        siteMonitor: https://you.domein.com
+        widget:
+            type: scrutiny
+            url: https:https://you.domein.com
+            
+    - UptimeKuma:
+        href: https://you.domein.com
+        description: uptimekuma-1 on pmx-node-1
+        icon: uptime-kuma.png
+        widget:
+            type: uptimekuma
+            url: https://you.domein.com
+            slug: publicservices
+
+    - Prometheus:
+        href: https://you.domein.com
+        description: prometheus-1 on pmx-node-1
+        icon: prometheus.png
+        server: pmx-node-1
+        container: prometheus-1
+        widget:
+            type: prometheus
+            url: https://you.domein.com
+
+
+
+- Security and Identity:
+    - Authentik:
+        href: https://you.domein.com
+        description: authentik-1 on pmx-node-1
+        icon: authentik.png
+        widget:
+            type: authentik
+            url: https://you.domein.com
+            key: {{HOMEPAGE_VAR_AUTHENTIK_KEY}}
+
+    - Passbolt:
+        href: https://you.domein.com
+        description: passbolt-1 on pmx-node-1
+        icon: passbolt.png
+
+
+
+- Automation:
+    - Kestra:
+        href: https://you.domein.com
+        description: kestra-1 on pmx-node-1
+        icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
+
+    - Ansible Semaphore:
+        href: https://you.domein.com
+        description: ansiblesemaphore-1 on pmx-node-1
+        icon: si-ansible-#EE0000
+
+    - ArgoCD:
+        href: https://you.domein.com
+        description: argocd-1 on pmx-node-1
+        icon: si-argo-#EF7B4D
+
+
+
+- IoT and Smarthome:
+    - Home Assistant:
+        href: https://you.domein.com
+        icon: home-assistant.png
+        description: homeassistant-1 on pmx-node-1
+        widget:
+            type: homeassistant
+            url: https://you.domein.com
+            key: {{HOMEPAGE_VAR_HOMEASSISTANT_KEY}}
+            custom:
+
+    - Plex:
+        href: https://you.domein.com
+        icon: plex.png
+        description: plex on synology-dsm
+        widget:
+            type: plex
+            url: https://you.domein.com
+            key: you_key

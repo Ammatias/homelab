@@ -1,0 +1,27 @@
+---
+- Development:
+  - Portfolio:
+    - icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/web-check.png
+      href: https://you.domein.com
+  - Homelab:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/ammatias/homelab
+  - Homepage:
+    - icon: homepage.png
+      href: https://gethomepage.dev/widgets/services/homeassistant/
+
+- Cloud Services:
+  - Cloudflare:
+    - icon: cloudflare.png
+      href: https://cloudflare.com
+  - Teleport:
+    - icon: teleport.png
+      href: https://teleport.sh
+  - Twingate:
+    - icon: twingate.png
+      href: https://twingate.com
+
+- Cloud Platforms:
+  - Microsoft Azure:
+    - icon: azure.png
+      href: https://portal.azure.com
