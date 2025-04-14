@@ -1,0 +1,1 @@
+su -s /bin/bash -c "./bin/cake passbolt register_user -u you@mail.ru -f Firstname-l Lastname-r admin" -s /bin/sh www-data

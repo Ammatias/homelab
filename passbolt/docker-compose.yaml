@@ -1,0 +1,55 @@
+services:
+  db:
+    container_name: passbolt_db
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=passbolt
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  passbolt:
+    container_name: passbolt
+    image: passbolt/passbolt:latest-ce
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      - APP_FULL_BASE_URL=https://you.domain.ru
+      - DATASOURCES_DEFAULT_HOST=db
+      - DATASOURCES_DEFAULT_USERNAME=${MYSQL_USER}
+      - DATASOURCES_DEFAULT_PASSWORD=${MYSQL_PASSWORD}
+      - DATASOURCES_DEFAULT_DATABASE=passbolt
+      - EMAIL_TRANSPORT_DEFAULT_HOST=smtp.google.com
+      - EMAIL_TRANSPORT_DEFAULT_PORT=587
+      - EMAIL_TRANSPORT_DEFAULT_USERNAME=${EMAIL_TRANSPORT_DEFAULT_USERNAME}
+      - EMAIL_TRANSPORT_DEFAULT_PASSWORD=${EMAIL_TRANSPORT_DEFAULT_PASSWORD}
+      - EMAIL_TRANSPORT_DEFAULT_TLS=true
+      - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM}
+    env_file:
+      - .env
+    volumes:
+      - ./gpg:/etc/passbolt/gpg
+      - ./jwt:/etc/passbolt/jwt
+    command:
+      [
+        "/usr/bin/wait-for.sh",
+        "-t",
+        "0",
+        "db:3306",
+        "--",
+        "/docker-entrypoint.sh",
+      ]
+    ports:
+      - 8443:443
+      - 8082:80
+
+volumes:
+  mysql:
+  gpg:
+  jwt:
