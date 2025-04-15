@@ -1,0 +1,29 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    environment:
+    # email
+      - WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${WATCHTOWER_NOTIFICATION_EMAIL_FROM}
+      - WATCHTOWER_NOTIFICATION_EMAIL_TO=${WATCHTOWER_NOTIFICATION_EMAIL_TO}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=${WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD}
+      - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=2
+    # label labels: - "com.centurylinklabs.watchtower.enable=true"
+      - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_LABEL_ENABLE=true
+    # - WATCHTOWER_RUN_ONCE=true
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_ROLLING_RESTART=true                           
+      - WATCHTOWER_SCHEDULE=0 0 1 * * 6  #сек0 мин0 час1 год месяц день6
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    restart: unless-stopped
