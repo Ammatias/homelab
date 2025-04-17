@@ -1,0 +1,129 @@
+---
+services:
+  server:
+    image: ghcr.io/goauthentik/server:2025.2.4
+    container_name: authentik-server
+    command: server
+    environment:
+      - AUTHENTIK_REDIS__HOST=authentik-redis
+      - AUTHENTIK_POSTGRESQL__HOST=authentik-db
+      - AUTHENTIK_POSTGRESQL__USER=${POSTGRES_USER}
+      - AUTHENTIK_POSTGRESQL__NAME=${POSTGRES_DB}
+      - AUTHENTIK_POSTGRESQL__PASSWORD=${POSTGRES_PASSWORD}
+      # (Required)  To generate a secret key run the following command:
+      #             echo $(openssl rand -base64 32)
+      - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
+      # (Optional)  Enable Error Reporting
+      - AUTHENTIK_ERROR_REPORTING__ENABLED=true
+      # (Optional)  Enable Email Sending
+      #             Highly recommended to notify you about alerts and configuration issues.
+      - AUTHENTIK_EMAIL__HOST=${EMAIL_HOST}
+      - AUTHENTIK_EMAIL__PORT=587
+      - AUTHENTIK_EMAIL__USERNAME=${EMAIL_USERNAME}
+      - AUTHENTIK_EMAIL__PASSWORD=${EMAIL_PASSWORD}
+      - AUTHENTIK_EMAIL__USE_TLS=true
+      - AUTHENTIK_EMAIL__USE_SSL=true
+      - AUTHENTIK_EMAIL__TIMEOUT=10
+      - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
+    ports:
+      - 9000:9000
+      - 9543:9443
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - ./media:/media
+      - ./custom-templates:/templates
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  worker:
+    image: ghcr.io/goauthentik/server:2025.2.4
+    container_name: authentik-worker
+    command: worker
+    environment:
+      - AUTHENTIK_REDIS__HOST=authentik-redis
+      - AUTHENTIK_POSTGRESQL__HOST=authentik-db
+      - AUTHENTIK_POSTGRESQL__USER=${POSTGRES_USER}
+      - AUTHENTIK_POSTGRESQL__NAME=${POSTGRES_DB}
+      - AUTHENTIK_POSTGRESQL__PASSWORD=${POSTGRES_PASSWORD}
+      # (Required)  To generate a secret key run the following command:
+      #             echo $(openssl rand -base64 32)
+      - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
+      # (Optional)  Enable Error Reporting
+      - AUTHENTIK_ERROR_REPORTING__ENABLED=true
+      # (Optional)  Enable Email Sending
+      #             Highly recommended to notify you about alerts and configuration issues.
+      - AUTHENTIK_EMAIL__HOST=${EMAIL_HOST}
+      - AUTHENTIK_EMAIL__PORT=587
+      - AUTHENTIK_EMAIL__USERNAME=${EMAIL_USERNAME}
+      - AUTHENTIK_EMAIL__PASSWORD=${EMAIL_PASSWORD}
+      - AUTHENTIK_EMAIL__USE_TLS=true
+      - AUTHENTIK_EMAIL__USE_SSL=true
+      - AUTHENTIK_EMAIL__TIMEOUT=10
+      - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
+    labels:  
+      - "com.centurylinklabs.watchtower.enable=false"
+    user: root
+    volumes:
+      - /run/docker.sock:/run/docker.sock
+      - ./media:/media
+      - ./certs:/certs
+      - ./custom-templates:/templates
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: docker.io/library/redis:7.4.2
+    container_name: authentik-redis
+    command: --save 60 1 --loglevel warning
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    labels:  
+      - "com.centurylinklabs.watchtower.enable=false"
+    volumes:
+      - redis_data:/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  postgres:
+    image: docker.io/library/postgres:17.4
+    container_name: authentik-db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - TZ=${TZ}
+    labels:  
+      - "com.centurylinklabs.watchtower.enable=false"
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "${POSTGRES_USER:-authentik}"']
+      start_period: 30s
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
