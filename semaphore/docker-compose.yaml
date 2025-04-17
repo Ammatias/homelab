@@ -1,0 +1,56 @@
+services:
+  semaphore_db:
+    image: docker.io/library/mysql:8.4
+    container_name: semaphore_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=semaphore_db
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    security_opt:
+      - no-new-privileges=false
+    env_file:
+      - .env
+    volumes:
+      - ./semaphore_db:/var/lib/mysql
+      
+  semaphore:
+    image: docker.io/semaphoreui/semaphore:latest
+    container_name: semaphore
+    restart: unless-stopped
+    environment:
+      - SEMAPHORE_DB_USER=${MYSQL_USER}
+      - SEMAPHORE_DB_PASS=${MYSQL_PASSWORD}
+      - SEMAPHORE_DB_HOST=semaphore_db
+      - SEMAPHORE_DB_PORT=3306
+      - SEMAPHORE_DB_DIALECT=mysql
+      - SEMAPHORE_DB=semaphore_db
+      - SEMAPHORE_PLAYBOOK_PATH=/tmp/semaphore/
+      - SEMAPHORE_ADMIN_PASSWORD=${SEMAPHORE_ADMIN_PASSWORD}
+      - SEMAPHORE_ADMIN_NAME=${SEMAPHORE_ADMIN_NAME}
+      - SEMAPHORE_ADMIN_EMAIL=${SEMAPHORE_ADMIN_EMAIL}
+      - SEMAPHORE_ADMIN=${SEMAPHORE_ADMIN}
+      - SEMAPHORE_ACCESS_KEY_ENCRYPTION=${SEMAPHORE_ACCESS_KEY_ENCRYPTION}
+      - ANSIBLE_HOST_KEY_CHECKING=false
+      - SEMAPHORE_EMAIL_SENDER=${SEMAPHORE_EMAIL_SENDER}
+      - SEMAPHORE_EMAIL_HOST=smtp.gmail.com
+      - SEMAPHORE_EMAIL_PORT=587
+      - SEMAPHORE_EMAIL_USERNAME=${SEMAPHORE_EMAIL_USERNAME}
+      - SEMAPHORE_EMAIL_PASSWORD=${SEMAPHORE_EMAIL_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    security_opt:
+      - no-new-privileges=true
+    ports:
+      - 3002:3000
+    env_file:
+      - .env
+    volumes:
+      - ./inventory/:/inventory:ro
+      - ./authorized-keys/:/authorized-keys:ro
+      - ./config/:/etc/semaphore
+    depends_on:
+      - semaphore_db
