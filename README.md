@@ -15,6 +15,6 @@ As this is my personal Homelab documentation, I don't accept any contributions. 
 
 ## Other Resources
 
-- [Boilerplates](https://github.com/ammatias/boilerplates) - Templates for various projects like Docker, Ansible, etc
 - [Homelab](https://github.com/ammatias/homelab) - My personal configuration files on Docker, Ansible, etc
+- [Boilerplates](https://github.com/ammatias/boilerplates) - Templates for various projects like Docker, Ansible, etc
 - [Cheat-sheets](https://github.com/ammatias/cheat-sheets) - Command Reference for various tools and technologies
