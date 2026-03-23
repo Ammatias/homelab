@@ -1,19 +1,94 @@
-# Ammatias `Homelab`
+# 🏠 Homelab
 
+A collection of **self-hosted services** I run on my personal server using Docker.
 
-**Hey, there!**
+> Real setups. Minimal configs. Easy to run.
 
+---
 
-This Repository **Homelab** is my personal knowledge-base. Here you'll find code-snippets, technical documentation, and command reference for various tools, and technologies.
+## 🚀 Quick Start
 
-> :warning: Be aware, products can change over time. I do my best to keep up with the latest changes and releases, but please understand that this won’t always be the case.
+```bash
+git clone https://github.com/Ammatias/homelab
+cd homelab/apps/<category>/<service>
+docker compose up -d
+```
 
+---
 
-## Contribution
+## 📦 Available Services
 
-As this is my personal Homelab documentation, I don't accept any contributions. But feel free to fork this repository and use it for your own documentation.
+### 🔐 Security
 
-## Other Resources
+* Authentik (SSO / identity provider)
+* Vaultwarden (password manager)
+* Passbolt (team password manager)
 
-- [Homelab](https://github.com/ammatias/homelab) - My personal configuration files on Docker, Ansible, etc
-- [Cheat-sheets](https://github.com/ammatias/cheat-sheets) - Command Reference for various tools and technologies
+---
+
+### ⚙️ Infrastructure
+
+* Nginx (reverse proxy)
+* Watchtower (auto updates)
+* Dockge (Docker stack manager)
+
+---
+
+### 📊 Monitoring
+
+* Uptime Kuma (uptime monitoring)
+* Scrutiny (disk monitoring)
+
+---
+
+### 🧰 DevOps
+
+* Semaphore (task runner / automation)
+
+---
+
+### 🖥 Dashboard
+
+* Homepage (service dashboard)
+
+---
+
+## 🧠 Philosophy
+
+* Keep it simple
+* Make it reproducible
+* Use what actually works
+
+> If you can’t deploy it in one command — it’s too complex.
+
+---
+
+## 🛠 Requirements
+
+* Docker
+* Docker Compose
+* Linux server
+
+---
+
+## ⚙️ Environment
+
+Create `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+---
+
+## 📌 Notes
+
+* These are real configurations used in my homelab
+* Not production hardened
+* Optimized for simplicity
+
+---
+
+## 🚧 Status
+
+Continuously improving and adding new services.
