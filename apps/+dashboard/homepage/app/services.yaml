@@ -1,0 +1,73 @@
+---
+- Networking:         
+    - Keenetic Giant:
+        href: https://you.domein.com
+        icon: keenetic-alt.png
+        description: router
+        siteMonitor: https://you.domein.com
+
+
+- Infrastructure and Data:
+    - Proxmox:
+        href: https://you.domein.com
+        icon: proxmox.png
+        description: pmx-node-1
+        siteMonitor: https://you.domein.com
+        widget:
+            type: proxmox
+            url: https://you.domein.com
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+
+
+
+- Management:
+    - Dockge:
+        href: https://dockge.ammatias.synology.me:4443
+        icon: si-docker-#2496ED
+        description: dockge-1 on pmx-node-1     
+
+
+- Monitoring:
+    - Scrutiny:
+        href: https://you.domein.com
+        icon: scrutiny.png
+        description: scrutiny on synology-dsm
+        siteMonitor: https://you.domein.com
+        widget:
+            type: scrutiny
+            url: https:https://you.domein.com
+            
+    - UptimeKuma:
+        href: https://you.domein.com
+        description: uptimekuma-1 on pmx-node-1
+        icon: uptime-kuma.png
+        widget:
+            type: uptimekuma
+            url: https://you.domein.com
+            slug: publicservices
+
+
+
+- Security and Identity:
+    - Authentik:
+        href: https://you.domein.com
+        description: authentik-1 on pmx-node-1
+        icon: authentik.png
+        widget:
+            type: authentik
+            url: https://you.domein.com
+            key: {{HOMEPAGE_VAR_AUTHENTIK_KEY}}
+
+    - Passbolt:
+        href: https://you.domein.com
+        description: passbolt-1 on pmx-node-1
+        icon: passbolt.png
+
+
+
+- Automation:
+    - Ansible Semaphore:
+        href: https://you.domein.com
+        description: ansiblesemaphore-1 on pmx-node-1
+        icon: si-ansible-#EE0000

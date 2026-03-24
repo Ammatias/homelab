@@ -1,0 +1,131 @@
+version: "3.8"
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UNMASK=002
+      - TZ=UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./radarr:/config
+      - ./Media:/data
+    logging:
+      driver: json-file
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges=true
+
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    restart: unless-stopped
+    ports:
+     - 8989:8989
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UNMASK=002
+      - TZ=UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./sonarr:/config
+      - ./Media:/data
+    logging:
+      driver: json-file
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges=true
+
+  whisparr-eros:
+    container_name: whisparr-eros
+    image: ghcr.io/hotio/whisparr:v3
+    restart: unless-stopped
+    ports:
+     - 6969:6969
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UNMASK=002
+      - TZ=UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./whisparr-eros:/config
+      - ./Media:/data
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges=true
+
+  prowlarr:
+    container_name: prowlarr
+    image: ghcr.io/hotio/prowlarr:latest
+    restart: unless-stopped
+    ports:
+      - 9696:9696
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UNMASK=002
+      - TZ=UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./prowlarr:/config
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges=true
+
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:preview-OIDC
+    restart: unless-stopped
+    ports:
+      - 5055:5055
+    environment:
+      - LOG_LEVEL=info
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UNMASK=002
+      - TZ=UTC
+      - DB_TYPE=${DB_TYPE}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - DB_LOG_QUERIES=${DB_LOG_QUERIES}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./jellyseerr:/app/config
+    env_file:
+      - .env
+    networks:
+        - proxy
+    security_opt:
+      - no-new-privileges=true
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    ports:
+      - 8191:8191
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=UTC
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

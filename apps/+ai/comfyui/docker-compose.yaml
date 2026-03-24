@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  comfyui:
+    image: comfyanonymous/comfyui:latest
+    container_name: comfyui
+    restart: unless-stopped
+    ports:
+      - 8188:8188
+    volumes:
+      - ./comfy-data:/workspace/ComfyUI:rw
+      - /mnt/ImageModels/comfy-output:/workspace/ComfyUI/output:rw
+      - /mnt/ImageModels/comfy-input:/workspace/ComfyUI/input:rw
+#      
+      - ./models:/workspace/ComfyUI/models
+#      
+      - ./config:/workspace/ComfyUI/config:rw
+      - ./custom_nodes:/workspace/ComfyUI/custom_nodes:rw
+    ulimits:
+      memlock: -1
+    mem_limit: 16gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,47 @@
+services:
+  koboldcpp:
+    image: noneabove1182/koboldcpp-gpu:latest
+    container_name: koboldcpp
+    restart: unless-stopped
+    ports:
+      - 5001:5001
+    volumes:
+      - ${MODEL_DIR}:/app/models
+    ulimits:
+      memlock: -1
+    mem_limit: 16gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    command:
+      [
+        "python3",
+        "koboldcpp.py",
+        "--model",
+        "/app/models/${MODEL_FILE}",
+        "--port",
+        "5001",
+        "--host",
+        "0.0.0.0",
+        "--usemlock",
+        "--threads", "6",
+        "--blasthreads", "4",
+        "--usecublas", "normal",
+        "--gpulayers", "40",
+        "--flashattention",
+        "--quantkv", "2",
+        "--blasbatchsize", "1024",
+        "--multiuser", "1",
+        "--ropeconfig", "1.0", "1000000.0",
+        "--smartcontext",
+#        "--contextsize", "6144",
+      ]
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true

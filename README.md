@@ -1,8 +1,8 @@
 # 🏠 Homelab
 
-A collection of **self-hosted services** I run on my personal server using Docker.
+A modular **self-hosted platform** built with Docker.
 
-> Real setups. Minimal configs. Easy to run.
+> Real infrastructure. Portable configs. No overengineering.
 
 ---
 
@@ -16,40 +16,104 @@ docker compose up -d
 
 ---
 
-## 📦 Available Services
+## 🏗 Architecture
+
+This homelab is built as a **layered system**:
+
+* 🌐 Reverse proxy → Traefik (systemd, central entrypoint)
+* 🐳 Services → Docker-based applications
+* 🗄 Data layer → PostgreSQL
+* 🔐 Auth layer → Authentik
+
+See full architecture in docs:
+👉 docs/architecture.md
+
+---
+
+## 📦 Services
 
 ### 🔐 Security
 
 * Authentik (SSO / identity provider)
-* Vaultwarden (password manager)
-* Passbolt (team password manager)
+* Passbolt (password manager)
 
 ---
 
 ### ⚙️ Infrastructure
 
-* Nginx (reverse proxy)
+* Traefik (reverse proxy, system service)
+* Dockhand (container management UI)
 * Watchtower (auto updates)
-* Dockge (Docker stack manager)
 
 ---
 
 ### 📊 Monitoring
 
+* Prometheus (metrics)
+* Grafana (dashboards)
 * Uptime Kuma (uptime monitoring)
-* Scrutiny (disk monitoring)
 
 ---
 
-### 🧰 DevOps
+### 🎬 Media Stack
 
-* Semaphore (task runner / automation)
+* Radarr / Sonarr (media management)
+* Prowlarr (indexers)
+* Jellyseerr (requests)
+* FlareSolverr (anti-bot bypass)
 
 ---
 
-### 🖥 Dashboard
+### 🤖 AI
 
-* Homepage (service dashboard)
+* KoboldCpp (local LLM inference)
+* SillyTavern (chat UI)
+* ComfyUI (image generation — experimental)
+
+---
+
+### 🧰 Tools & UI
+
+* Homepage (dashboard)
+* Dockhand (container UI)
+* pgAdmin (database management)
+* Trilium (notes / knowledge base)
+
+---
+
+## 🌐 Networking
+
+* External `proxy` network (Traefik routing)
+* Internal service networks
+* Domain-based routing (`*.domain.ru`)
+
+---
+
+## 🔐 Security
+
+* HTTPS everywhere (Traefik)
+* IP allowlist for sensitive services
+* Secure headers
+* Minimal exposed ports
+
+---
+
+## ⚙️ Configuration
+
+Each service:
+
+* Uses `.env`
+* Uses relative paths (`./`)
+* Is fully portable
+
+---
+
+## 💡 Features
+
+* One-command deployments
+* Clean and minimal configs
+* Real setups — not tutorials
+* Fully self-hosted (including AI)
 
 ---
 
@@ -57,9 +121,9 @@ docker compose up -d
 
 * Keep it simple
 * Make it reproducible
-* Use what actually works
+* Build real systems
 
-> If you can’t deploy it in one command — it’s too complex.
+> If it’s not reproducible — it’s broken
 
 ---
 
@@ -71,24 +135,18 @@ docker compose up -d
 
 ---
 
-## ⚙️ Environment
-
-Create `.env` file:
-
-```bash
-cp .env.example .env
-```
-
----
-
 ## 📌 Notes
 
 * These are real configurations used in my homelab
-* Not production hardened
-* Optimized for simplicity
+* Some services are experimental (AI stack)
+* Designed for learning and real usage
 
 ---
 
 ## 🚧 Status
 
-Continuously improving and adding new services.
+Actively evolving:
+
+* Improving architecture
+* Expanding AI stack
+* Adding new services

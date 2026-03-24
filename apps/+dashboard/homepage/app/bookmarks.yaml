@@ -1,0 +1,15 @@
+---
+- Development:
+  - Homepage:
+    - icon: homepage.png
+      href: https://gethomepage.dev/widgets/services/homeassistant/
+
+- Cloud Services:
+  - Cloudflare:
+    - icon: cloudflare.png
+      href: https://cloudflare.com
+
+- Cloud Platforms:
+  - Microsoft Azure:
+    - icon: azure.png
+      href: https://portal.azure.com

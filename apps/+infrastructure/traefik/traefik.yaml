@@ -1,0 +1,79 @@
+global:
+ checkNewVersion: true
+ sendAnonymousUsage: true
+api:
+ dashboard: true
+ insecure: false
+ debug: true
+ disableDashboardAd: true
+entryPoints:
+ web:
+   address: ":80"
+   http:
+     redirections:
+       entryPoint:
+           to: websecure
+           scheme: https
+ websecure:
+   address: ":443"
+ metrics:
+   address: :8082
+metrics:
+ prometheus:
+   entryPoint: metrics
+serversTransport:
+   insecureSkipVerify: true
+providers:
+ file:
+   directory: /etc/traefik/dynamic
+   watch: true
+ plugin:
+   traefik-proxmox-provider:
+     pollInterval: "30s"
+     apiEndpoint: "https://192.168.100.103:8006"
+     apiTokenId: "root@pam!traefik_prod"
+     apiToken: "05a06a9c-da4f-41f3-b4e3-52ccccf12975"
+     apiLogging: "info"
+     apiValidateSSL: "false"
+certificatesResolvers:
+ selectelv2:
+   acme:
+     caServer: https://acme-v02.api.letsencrypt.org/directory         # prod 
+     #caServer: https://acme-staging-v02.api.letsencrypt.org/directory  # test
+     email: kopytovd02@gmail.com
+     storage: /etc/traefik/acme.json
+     dnsChallenge:
+       provider: selectelv2
+       #disablePropagationCheck: true
+       resolvers:
+         - "188.68.203.1:53"
+         - "77.223.114.2:53"
+log:
+   level: "INFO"
+   filePath: "/var/log/traefik/traefik.log"
+   noColor: false
+   maxSize: 100
+   compress: true
+#
+accessLog:
+   addInternals: true
+   filePath: "/var/log/traefik/access.log"
+   bufferingSize: 100
+   fields:
+       names:
+           StartUTC: drop
+   filters:
+       statusCodes:
+           - "204-299"
+           - "400-599"
+experimental:
+   plugins:
+       bouncer:
+           moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+           version: v1.4.6
+       traefik-proxmox-provider:
+           moduleName: github.com/NX211/traefik-proxmox-provider
+           version: v0.7.0
+       traefik_plugin_AdminAPI_WebUI:
+           moduleName: github.com/Miromani4/traefik-plugin-AdminAPI_WebUI
+           version: v1.3.1

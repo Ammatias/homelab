@@ -1,0 +1,21 @@
+services:
+  sillytavern:
+    image: ghcr.io/sillytavern/sillytavern:latest
+    container_name: sillytavern
+    hostname: sillytavern
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - FORCE_COLOR=1
+    ports:
+      - 8000:8000
+    volumes:
+      - ./config:/home/node/app/config
+      - ./data:/home/node/app/data
+      - ./plugins:/home/node/app/plugins
+      - ./extensions:/home/node/app/public/scripts/extensions/third-party
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true

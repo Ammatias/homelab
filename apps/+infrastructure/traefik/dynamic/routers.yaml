@@ -1,0 +1,49 @@
+http:
+  routers:
+    traefik-dashboard:
+      entryPoints:
+        - web
+        - websecure
+      rule: "Host(`traefik.domain.ru`)"
+      service: api@internal
+      middlewares:
+        - default-ipallowlist
+        - default-headers
+        - https-redirect
+      tls:
+        certResolver: selectelv2
+#
+    traefik-dashboard-admin:
+      entryPoints:
+        - web
+        - websecure
+      rule: "Host(`dash.traefik.domain.ru`)"
+      service: noop@internal
+      middlewares:
+        - default-ipallowlist
+        - traefik_plugin_AdminAPI_WebUI
+        - default-headers
+        - https-redirect
+      tls:
+        certResolver: selectelv2
+#
+    dockhand:
+      entryPoints:
+        - web
+        - websecure
+      rule: "Host(`dockhand.domain.ru`)"
+      middlewares:
+        - default-headers
+        - https-redirect
+      tls:
+        certResolver: selectelv2
+      service: dockhand
+#
+#
+  services:
+    dockhand:
+      loadBalancer:
+        servers:
+          - url: "http://ip:3000"
+        passHostHeader: true
+
