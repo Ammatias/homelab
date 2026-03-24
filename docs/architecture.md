@@ -110,8 +110,8 @@ Build a **reproducible and practical self-hosted system**
 
                     🎬 Media Stack
 
-         Radarr ─┐
-       Sonarr ─┼──→ Prowlarr ─→ Indexers
+        Radarr ─┐
+        Sonarr ─┼──→ Prowlarr ─→ Indexers
     Jellyseerr ─┘
         │
         ▼
