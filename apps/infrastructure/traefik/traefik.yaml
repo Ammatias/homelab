@@ -27,14 +27,6 @@ providers:
  file:
    directory: /etc/traefik/dynamic
    watch: true
- plugin:
-   traefik-proxmox-provider:
-     pollInterval: "30s"
-     apiEndpoint: "https://192.168.100.103:8006"
-     apiTokenId: "root@pam!traefik_prod"
-     apiToken: "05a06a9c-da4f-41f3-b4e3-52ccccf12975"
-     apiLogging: "info"
-     apiValidateSSL: "false"
 certificatesResolvers:
  selectelv2:
    acme:
@@ -71,9 +63,6 @@ experimental:
        bouncer:
            moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
            version: v1.4.6
-       traefik-proxmox-provider:
-           moduleName: github.com/NX211/traefik-proxmox-provider
-           version: v0.7.0
        traefik_plugin_AdminAPI_WebUI:
            moduleName: github.com/Miromani4/traefik-plugin-AdminAPI_WebUI
            version: v1.3.1

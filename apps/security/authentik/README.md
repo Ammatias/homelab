@@ -77,7 +77,6 @@ AUTHENTIK_EMAIL_PASSWORD=
 This setup requires external services:
 
 - PostgreSQL
-- Redis
 
 They are NOT included in this compose file.
 
@@ -103,17 +102,18 @@ Set connection details in `.env`:
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
+docker network create backend
 ```
 
 ---
 
 ## 📁 Volumes
 
-| Path               | Purpose             |
-| ------------------ | ------------------- |
-| ./media            | Uploaded files      |
-| ./custom-templates | Custom UI templates |
+| Path                             | Purpose             |
+| -------------------------------- | ------------------- |
+| /home/authentik/media            | Uploaded files      |
+| /home/authentik/custom-templates | Custom UI templates |
 
 ---
 

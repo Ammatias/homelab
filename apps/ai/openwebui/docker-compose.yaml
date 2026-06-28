@@ -1,0 +1,30 @@
+services:
+  openwebui:
+    container_name: openwebui
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    ports:
+      - 3000:8080
+    environment:
+      - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
+      - OAUTH_PROVIDER_NAME=authentik
+      - OPENID_PROVIDER_URL=${OPENID_PROVIDER_URL}
+      - OPENID_REDIRECT_URI=${OPENID_REDIRECT_URI}
+      - WEBUI_URL=${WEBUI_URL}
+      - ENABLE_OAUTH_SIGNUP=true
+      - ENABLE_LOGIN_FORM=true
+      - OAUTH_MERGE_ACCOUNTS_BY_EMAIL=true
+    volumes:
+      - /home/openwebui:/app/backend/data
+    security_opt:
+      - no-new-privileges=true
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

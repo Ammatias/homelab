@@ -46,7 +46,7 @@ TZ=UTC
 This setup uses an external Docker network:
 
 ```bash id="2zk5pr"
-docker network create proxy
+docker network create frontend
 ```
 
 ---
@@ -55,7 +55,7 @@ docker network create proxy
 
 | Port | Description |
 | ---- | ----------- |
-| 8083 | Web UI      |
+| 8080 | Web UI      |
 
 ---
 
@@ -63,7 +63,7 @@ docker network create proxy
 
 | Path      | Purpose        |
 | --------- | -------------- |
-| ./trilium | Notes and data |
+| /home/trilium | Notes and data |
 
 ---
 

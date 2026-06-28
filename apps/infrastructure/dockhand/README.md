@@ -39,7 +39,7 @@ No additional configuration required.
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
 ```
 
 ---

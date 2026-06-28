@@ -9,28 +9,26 @@ services:
       - 8082:80
     environment:
       - APP_FULL_BASE_URL=${APP_FULL_BASE_URL}
+      - DATASOURCES_DEFAULT_URL=${DATASOURCES_DEFAULT_URL}
       - DATASOURCES_DEFAULT_DRIVER=Cake\Database\Driver\Postgres
       - DATASOURCES_DEFAULT_ENCODING=utf8
-      - DATASOURCES_DEFAULT_URL=${DATASOURCES_DEFAULT_URL}
-      - EMAIL_TRANSPORT_DEFAULT_HOST=smtp.google.com
-      - EMAIL_TRANSPORT_DEFAULT_PORT=587
+      - EMAIL_TRANSPORT_DEFAULT_HOST=${EMAIL_TRANSPORT_DEFAULT_HOST}
+      - EMAIL_TRANSPORT_DEFAULT_PORT=${EMAIL_TRANSPORT_DEFAULT_PORT}
       - EMAIL_TRANSPORT_DEFAULT_USERNAME=${EMAIL_TRANSPORT_DEFAULT_USERNAME}
       - EMAIL_TRANSPORT_DEFAULT_PASSWORD=${EMAIL_TRANSPORT_DEFAULT_PASSWORD}
-      - EMAIL_TRANSPORT_DEFAULT_TLS=true
+      - EMAIL_TRANSPORT_DEFAULT_TLS=${EMAIL_TRANSPORT_DEFAULT_TLS}
       - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM}
+    volumes:
+      - /home/passbolt/gpg:/etc/passbolt/gpg
+      - /home/passbolt/jwt:/etc/passbolt/jwt
     security_opt:
       - no-new-privileges=true
-    volumes:
-      - ./gpg:/etc/passbolt/gpg
-      - ./jwt:/etc/passbolt/jwt
     env_file:
       - .env
     command: ["/usr/bin/wait-for.sh", "-t", "0", "postgres_ip:5432", "--", "/docker-entrypoint.sh"]
     networks:
-      - proxy
-volumes:
-  gpg: null
-  jwt: null
+      - frontend
+
 networks:
-  proxy:
+  frontend:
     external: true

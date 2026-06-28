@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   comfyui:
     image: comfyanonymous/comfyui:latest
@@ -27,7 +25,8 @@ services:
               count: 1
               capabilities: [gpu]
     networks:
-      - proxy
+      - frontend
+
 networks:
-  proxy:
+  frontend:
     external: true

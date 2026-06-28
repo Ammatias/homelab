@@ -61,7 +61,7 @@ POSTGRES_DB=
 This setup uses an external Docker network:
 
 ```bash
-docker network create database
+docker network create backend
 ```
 
 ---

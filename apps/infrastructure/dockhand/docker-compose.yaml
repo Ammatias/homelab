@@ -8,10 +8,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/app/data
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
     security_opt:
       - no-new-privileges=true
     networks:
-      - proxy
+      - frontend
+
 networks:
-  proxy:
+  frontend:
     external: true

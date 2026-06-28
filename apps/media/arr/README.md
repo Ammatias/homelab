@@ -35,7 +35,7 @@ docker compose up -d
 | Radarr       | http://localhost:7878 |
 | Sonarr       | http://localhost:8989 |
 | Prowlarr     | http://localhost:9696 |
-| Jellyseerr   | http://localhost:5055 |
+| Seerr        | http://localhost:5055 |
 | FlareSolverr | http://localhost:8191 |
 
 ---
@@ -58,14 +58,14 @@ TZ=UTC
 
 All services now use **relative paths** for full portability:
 
-| Path         | Purpose           |
-| ------------ | ----------------- |
-| ./radarr     | Radarr config     |
-| ./sonarr     | Sonarr config     |
-| ./prowlarr   | Prowlarr config   |
-| ./jellyseerr | Jellyseerr config |
-| ./whisparr   | Whisparr config   |
-| ./media      | Media files       |
+| Path             | Purpose           |
+| ---------------- | ----------------- |
+| /home/radarr     | Radarr config     |
+| /home/sonarr     | Sonarr config     |
+| /home/prowlarr   | Prowlarr config   |
+| /home/jellyseerr | Jellyseerr config |
+| /home/whisparr   | Whisparr config   |
+| /mnt/media       | Media files       |
 
 ---
 
@@ -74,7 +74,8 @@ All services now use **relative paths** for full portability:
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
+docker network create backend
 ```
 
 ---
@@ -86,7 +87,7 @@ docker network create proxy
 | Radarr       | 7878 |
 | Sonarr       | 8989 |
 | Prowlarr     | 9696 |
-| Jellyseerr   | 5055 |
+| Seerr        | 5055 |
 | FlareSolverr | 8191 |
 
 ---
@@ -117,14 +118,14 @@ Make sure they match your system.
 1. Open Prowlarr → add indexers
 2. Connect Prowlarr to Radarr & Sonarr
 3. Configure download client
-4. Use Jellyseerr for requests
+4. Use Seerr for requests
 
 ---
 
 ## 🚧 Improvements
 
 * Add qBittorrent (download client)
-* Add reverse proxy (nginx)
+* Add reverse proxy (Traefik)
 * Add authentication via Authentik
 
 ---

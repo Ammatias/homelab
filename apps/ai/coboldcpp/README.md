@@ -78,7 +78,7 @@ You can remove GPU settings and run on CPU, but performance will be slower.
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create backend
 ```
 
 ---

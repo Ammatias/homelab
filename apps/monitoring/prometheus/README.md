@@ -57,7 +57,7 @@ scrape_configs:
 This setup uses an external Docker network:
 
 ```bash id="0lsy2u"
-docker network create proxy
+docker network create backend
 ```
 
 ---
@@ -72,10 +72,10 @@ docker network create proxy
 
 ## 📁 Volumes
 
-| Path     | Purpose             |
-| -------- | ------------------- |
-| ./config | Configuration files |
-| ./data   | Metrics storage     |
+| Path                    | Purpose             |
+| ----------------------- | ------------------- |
+| /home/prometheus/config | Configuration files |
+| /home/prometheus/data   | Metrics storage     |
 
 ---
 

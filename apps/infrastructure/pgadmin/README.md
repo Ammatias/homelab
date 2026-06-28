@@ -58,7 +58,8 @@ PGADMIN_DEFAULT_PASSWORD=
 This setup uses an external Docker network:
 
 ```bash id="v2l7yb"
-docker network create proxy
+docker network create frontend
+docker network create backend
 ```
 
 ---
@@ -73,9 +74,9 @@ docker network create proxy
 
 ## 📁 Volumes
 
-| Path   | Purpose      |
-| ------ | ------------ |
-| ./data | pgAdmin data |
+| Path               | Purpose      |
+| ------------------ | ------------ |
+| /home/pgadmin/data | pgAdmin data |
 
 ---
 

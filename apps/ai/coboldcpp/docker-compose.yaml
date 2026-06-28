@@ -41,7 +41,8 @@ services:
 #        "--contextsize", "6144",
       ]
     networks:
-      - proxy
+      - backend
+
 networks:
-  proxy:
+  backend:
     external: true

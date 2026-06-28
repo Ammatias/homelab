@@ -71,7 +71,7 @@ Main files:
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
 ```
 
 ---
@@ -86,11 +86,11 @@ docker network create proxy
 
 ## 📁 Volumes
 
-| Path     | Purpose            |
-| -------- | ------------------ |
-| ./config | Main configuration |
-| ./images | Custom images      |
-| ./icons  | Custom icons       |
+| Path                  | Purpose            |
+| --------------------- | ------------------ |
+| /home/homepage        | Main configuration |
+| /home/homepage/images | Custom images      |
+| /home/homepage/icons  | Custom icons       |
 
 ---
 

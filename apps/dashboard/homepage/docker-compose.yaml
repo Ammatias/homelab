@@ -8,20 +8,19 @@ services:
       - 3000:3000
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=*
-      - PUID=1026
-      - PGID=100
       - HOMEPAGE_VAR_API_SECRET=${HOMEPAGE_VAR_API_SECRET}
     security_opt:
       - no-new-privileges=true
     env_file:
       - .env
     volumes:
-      - ./app:/app/config
-      - ./app/public/images:/app/public/images
-      - ./app/public/icons:/app/public/icons
+      - /home/homepage:/app/config
+      - /home/homepage/images:/app/public/images
+      - /home/homepage/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - proxy
+      - frontend
+
 networks:
-  proxy:
+  frontend:
     external: true

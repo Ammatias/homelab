@@ -78,17 +78,17 @@ Make sure:
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
 ```
 
 ---
 
 ## 📁 Volumes
 
-| Path  | Purpose  |
-| ----- | -------- |
-| ./gpg | GPG keys |
-| ./jwt | JWT keys |
+| Path               | Purpose  |
+| ------------------ | -------- |
+| /home/passbolt/gpg | GPG keys |
+| /home/passbolt/jwt | JWT keys |
 
 ---
 

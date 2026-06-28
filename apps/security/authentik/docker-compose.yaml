@@ -1,9 +1,12 @@
 services:
   server:
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:6.5.3
     container_name: authentik-server
     command: server
     restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 9443:9443
     environment:
       - AUTHENTIK_POSTGRESQL__HOST=${POSTGRESQL_HOST}
       - AUTHENTIK_POSTGRESQL__PORT=${POSTGRESQL_PORT}
@@ -20,21 +23,22 @@ services:
       - AUTHENTIK_EMAIL__USE_SSL=${EMAIL_USE_SSL}
       - AUTHENTIK_EMAIL__TIMEOUT=10
       - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
-    ports:
-      - 9000:9000
-      - 9443:9443
+    volumes:
+      - /home/authentik/media:/media
+      - /home/authentik/custom-templates:/templates
     security_opt:
       - no-new-privileges=true
-    volumes:
-      - ./media:/media
-      - ./custom-templates:/templates
     env_file:
       - .env
+    networks:
+      - frontend
+      - backend
 
   worker:
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:2026.5.3
     container_name: authentik-worker
     command: worker
+    user: root
     restart: unless-stopped
     environment:
       - AUTHENTIK_POSTGRESQL__HOST=${POSTGRESQL_HOST}
@@ -52,16 +56,20 @@ services:
       - AUTHENTIK_EMAIL__USE_SSL=${EMAIL_USE_SSL}
       - AUTHENTIK_EMAIL__TIMEOUT=10
       - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
-    user: root
     volumes:
       - /run/docker.sock:/run/docker.sock
-      - ./media:/media
-      - ./certs:/certs
-      - ./custom-templates:/templates
+      - /home/authentik/media:/media
+      - /home/authentik/certs:/certs
+      - /home/authentik/custom-templates:/templates
+    security_opt:
+      - no-new-privileges=true
     env_file:
       - .env
     networks:
-      - proxy
+      - backend
+
 networks:
-  proxy:
+  frontend:
+    external: true
+  backend:
     external: true

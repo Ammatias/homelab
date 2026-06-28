@@ -36,8 +36,8 @@ docker compose up -d
 Make sure required networks exist:
 
 ```bash
-docker network create proxy
-docker network create database
+docker network create frontend
+docker network create backend
 ```
 
 ---

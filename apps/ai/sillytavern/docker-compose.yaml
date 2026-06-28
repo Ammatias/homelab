@@ -1,21 +1,26 @@
 services:
   sillytavern:
-    image: ghcr.io/sillytavern/sillytavern:latest
     container_name: sillytavern
-    hostname: sillytavern
+    image: ghcr.io/sillytavern/sillytavern:latest
     restart: unless-stopped
+    ports:
+      - 8000:8000
     environment:
       - NODE_ENV=production
       - FORCE_COLOR=1
-    ports:
-      - 8000:8000
     volumes:
-      - ./config:/home/node/app/config
-      - ./data:/home/node/app/data
-      - ./plugins:/home/node/app/plugins
-      - ./extensions:/home/node/app/public/scripts/extensions/third-party
+      - /home/syllytavern/config:/home/node/app/config
+      - /home/syllytavern/data:/home/node/app/data
+      - /home/syllytavern/plugins:/home/node/app/plugins
+      - /home/syllytavern/extensions:/home/node/app/public/scripts/extensions/third-party
+    security_opt:
+      - no-new-privileges=true
     networks:
-      - proxy
+      - frontend
+      - backend
+
 networks:
-  proxy:
+  frontend:
+    external: true
+  backend:
     external: true

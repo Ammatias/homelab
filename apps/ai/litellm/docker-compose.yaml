@@ -1,0 +1,28 @@
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:latest
+    container_name: litellm
+    restart: unless-stopped
+    ports:
+      - 4000:4000
+    volumes:
+      - /home/litellm/config.yaml:/app/config.yaml
+    environment:
+      - UI_USERNAME=${UI_USERNAME}
+      - UI_PASSWORD=${UI_PASSWORD}
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - STORE_MODEL_IN_DB=True
+      - PROXY_BASE_URL=https://litellm.domain.ru
+      - CONTROL_PLANE_URL=https://litellm.domain.ru
+    security_opt:
+      - no-new-privileges=true
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

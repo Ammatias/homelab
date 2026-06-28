@@ -59,7 +59,8 @@ ROOT_URL=http://localhost:3002
 This setup uses an external Docker network:
 
 ```bash
-docker network create proxy
+docker network create frontend
+docker network create backend
 ```
 
 ---
@@ -76,7 +77,7 @@ docker network create proxy
 
 | Path   | Purpose      |
 | ------ | ------------ |
-| ./data | Grafana data |
+| /home/grafana/data | Grafana data |
 
 ---
 
