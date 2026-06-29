@@ -1,19 +1,33 @@
 services:
-  dns:
+  lancache_dns:
     image: lancachenet/lancache-dns:latest
-    env_file: .env
+    container_name: lancache_dns
     restart: unless-stopped
     ports:
       - ${DNS_BIND_IP}:53:53/udp
       - ${DNS_BIND_IP}:53:53/tcp
+    security_opt:
+      - no-new-privileges=true
+    env_file: .env
+    networks:
+      - backend
 
   monolithic:
     image: lancachenet/monolithic:latest
-    env_file: .env
+    container_name: lancache_monolithic
     restart: unless-stopped
     ports:
       - 80:80/tcp
       - 443:443/tcp
     volumes:
-      - ./cache:/data/cache
-      - ./lancache/logs:/data/logs
+      - /mnt/cache:/data/cache
+      - /home/lancache/logs:/data/logs
+    security_opt:
+      - no-new-privileges=true
+    env_file: .env
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
