@@ -8,9 +8,9 @@ Self-hosted **note-taking and personal knowledge base**.
 
 ## 🚀 Quick Start
 
-```bash id="h8m3qs"
+```bash
 git clone https://github.com/Ammatias/homelab
-cd homelab/apps/productivity/trilium
+cd homelab/apps/infrastructure/trillium
 cp .env.example .env
 docker compose up -d
 ```
@@ -19,7 +19,7 @@ docker compose up -d
 
 ## 🌐 Access
 
-* http://localhost:8083
+* http://localhost:8080
 
 ---
 
@@ -29,8 +29,16 @@ docker compose up -d
 
 Edit `.env`:
 
-```env id="d2x7ua"
-TZ=UTC
+```env
+# Timezone
+TZ=Asia/Yekaterinburg
+
+# OAuth2 / Authentik settings
+TRILIUM_BASE_URL=https://trilium.domain.ru
+TRILIUM_CLIENT_ID=your-authentik-client-id
+TRILIUM_CLIENT_SECRET=your-authentik-client-secret
+TRILIUM_ISSUER_BASE_URL=https://authentik.domain.ru/application/o/trilium/
+TRILIUM_ISSUER_NAME=Authentik
 ```
 
 ---
@@ -86,7 +94,7 @@ TRILIUM_NETWORK_TRUSTEDREVERSEPROXY=172.18.0.0/16
 
 ## 📌 Notes
 
-* Data is stored in `./trilium`
+* Data is stored in `/home/trilium`
 * First startup may take a few minutes
 * Change port if conflict occurs
 
@@ -94,9 +102,7 @@ TRILIUM_NETWORK_TRUSTEDREVERSEPROXY=172.18.0.0/16
 
 ## 🚧 Improvements
 
-* Add authentication via Authentik
 * Add backups
-* Add reverse proxy (Traefik)
 
 ---
 

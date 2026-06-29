@@ -6,10 +6,10 @@ services:
     ports:
       - 5055:5055
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=${PUID}
+      - PGID=${PGID}
       - UNMASK=002
-      - TZ=Asia/Yekaterinburg
+      - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/seerr:/config
@@ -29,10 +29,10 @@ services:
     ports:
       - 9696:9696
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=${PUID}
+      - PGID=${PGID}
       - UNMASK=002
-      - TZ=Asia/Yekaterinburg
+      - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/prowlarr:/config
@@ -50,10 +50,10 @@ services:
     ports:
       - 7878:7878
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=${PUID}
+      - PGID=${PGID}
       - UNMASK=002
-      - TZ=Asia/Yekaterinburg
+      - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/radarr:/config
@@ -72,10 +72,10 @@ services:
     ports:
      - 8989:8989
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=${PUID}
+      - PGID=${PGID}
       - UNMASK=002
-      - TZ=Asia/Yekaterinburg
+      - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/sonarr:/config
@@ -94,10 +94,10 @@ services:
     ports:
       - 8686:8686
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=${PUID}
+      - PGID=${PGID}
       - UNMASK=002
-      - TZ=Asia/Yekaterinburg
+      - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/lidarr:/config

@@ -6,18 +6,18 @@ This setup uses Docker networks to isolate and connect services.
 
 ## 🔗 Networks
 
-### proxy
+### frontend
 
-* Used by Traefik
+* Used by Traefik and public-facing UIs
 * Handles incoming traffic
 * Connects external requests to services
 
 ---
 
-### database
+### backend
 
 * Internal network
-* Used by PostgreSQL and dependent services
+* Used by databases (PostgreSQL), LLMs (KoboldCpp), and dependent services
 * Not exposed externally
 
 ---

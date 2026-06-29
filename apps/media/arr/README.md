@@ -11,9 +11,8 @@ Self-hosted **media automation stack** using Docker.
 * Radarr → movie management
 * Sonarr → TV series management
 * Prowlarr → indexer manager
-* Jellyseerr → user requests
-* FlareSolverr → bypass anti-bot protection
-* Whisparr → niche content manager
+* Seerr → user requests
+* Lidarr → music management
 
 ---
 
@@ -30,13 +29,13 @@ docker compose up -d
 
 ## 🌐 Access
 
-| Service      | URL                   |
-| ------------ | --------------------- |
-| Radarr       | http://localhost:7878 |
-| Sonarr       | http://localhost:8989 |
-| Prowlarr     | http://localhost:9696 |
-| Seerr        | http://localhost:5055 |
-| FlareSolverr | http://localhost:8191 |
+| Service  | URL                   |
+| -------- | --------------------- |
+| Radarr   | http://localhost:7878 |
+| Sonarr   | http://localhost:8989 |
+| Prowlarr | http://localhost:9696 |
+| Seerr    | http://localhost:5055 |
+| Lidarr   | http://localhost:8686 |
 
 ---
 
@@ -56,22 +55,20 @@ TZ=UTC
 
 ## 📁 Volumes
 
-All services now use **relative paths** for full portability:
-
 | Path             | Purpose           |
 | ---------------- | ----------------- |
-| /home/radarr     | Radarr config     |
-| /home/sonarr     | Sonarr config     |
-| /home/prowlarr   | Prowlarr config   |
-| /home/jellyseerr | Jellyseerr config |
-| /home/whisparr   | Whisparr config   |
-| /mnt/media       | Media files       |
+| `/home/seerr`    | Seerr config      |
+| `/home/prowlarr`  | Prowlarr config   |
+| `/home/radarr`    | Radarr config     |
+| `/home/sonarr`    | Sonarr config     |
+| `/home/lidarr`    | Lidarr config     |
+| `/mnt/media`      | Media storage     |
 
 ---
 
 ## ⚠️ Network
 
-This setup uses an external Docker network:
+This setup uses external Docker networks:
 
 ```bash
 docker network create frontend
@@ -82,19 +79,19 @@ docker network create backend
 
 ## 🔌 Ports
 
-| Service      | Port |
-| ------------ | ---- |
-| Radarr       | 7878 |
-| Sonarr       | 8989 |
-| Prowlarr     | 9696 |
-| Seerr        | 5055 |
-| FlareSolverr | 8191 |
+| Service  | Port |
+| -------- | ---- |
+| Radarr   | 7878 |
+| Sonarr   | 8989 |
+| Prowlarr | 9696 |
+| Seerr    | 5055 |
+| Lidarr   | 8686 |
 
 ---
 
 ## 🔐 Environment
 
-All services use shared environment variables:
+All services use shared environment variables from `.env`:
 
 * `PUID` → user ID
 * `PGID` → group ID
@@ -106,10 +103,9 @@ Make sure they match your system.
 
 ## 📌 Notes
 
-* All paths are now **relative (`./`)** → fully portable setup
-* No hardcoded system paths
+* This setup uses host absolute paths (`/home/...` and `/mnt/...`) for persistent storage
 * `security_opt` is enabled (`no-new-privileges=true`)
-* `.env` is used consistently across all services
+* `.env` is used consistently across all services to set common variables (PUID, PGID, TZ)
 
 ---
 

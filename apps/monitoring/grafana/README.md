@@ -41,9 +41,24 @@ GF_SECURITY_ADMIN_PASSWORD=admin
 Edit `.env` file:
 
 ```env
-GF_SECURITY_ADMIN_USER=
-GF_SECURITY_ADMIN_PASSWORD=
-ROOT_URL=http://localhost:3002
+GF_SECURITY_ADMIN_USER=admin
+GF_SECURITY_ADMIN_PASSWORD=secure-admin-password
+ROOT_URL=https://grafana.domain.com
+```
+
+### Optional (Authentik OAuth2)
+
+Configure variables in `.env` to enable SSO:
+
+```env
+OAUTH_ENABLED=true
+OAUTH_NAME=authentik
+OAUTH_CLIENT_ID=your-client-id
+OAUTH_CLIENT_SECRET=your-client-secret
+OAUTH_AUTH_URL=https://authentik.domain.ru/application/o/authorize/
+OAUTH_TOKEN_URL=https://authentik.domain.ru/application/o/token/
+OAUTH_API_URL=https://authentik.domain.ru/application/o/userinfo/
+SIGNOUT_REDIRECT_URL=https://authentik.domain.ru/application/o/grafana/end-session/
 ```
 
 ---
@@ -101,7 +116,7 @@ Add data source manually:
 
 * Runs as root (`user: "0"`) to avoid permission issues
 * Change default credentials immediately
-* Data is persisted in `./data`
+* Data is persisted in `/home/grafana/data`
 
 ---
 

@@ -40,9 +40,19 @@ PGADMIN_DEFAULT_PASSWORD=admin
 
 Edit `.env`:
 
-```env id="0i4mzs"
-PGADMIN_DEFAULT_EMAIL=
-PGADMIN_DEFAULT_PASSWORD=
+```env
+PGADMIN_DEFAULT_EMAIL=admin@example.com
+PGADMIN_DEFAULT_PASSWORD=secure-admin-password
+```
+
+### Optional (Authentik OAuth2)
+
+To enable SSO via Authentik, configure:
+
+```env
+AUTHENTICATION_SOURCES=['oauth2']
+AUTO_CREATE_USER=true
+OAUTH2_CONFIG=[{'OAUTH2_NAME':'authentik','OAUTH2_DISPLAY_NAME':'Authentik','OAUTH2_CLIENT_ID':'CLIENT_ID','OAUTH2_CLIENT_SECRET':'CLIENT_SECRET','OAUTH2_TOKEN_URL':'TOKEN_URL','OAUTH2_AUTHORIZATION_URL':'AUTHORIZATION_URL','OAUTH2_API_BASE_URL':'API_BASE_URL','OAUTH2_USERINFO_ENDPOINT':'USERINFO_ENDPOINT','OAUTH2_SERVER_METADATA_URL':'SERVER_METADATA_URL','OAUTH2_SCOPE':'openid email profile','OAUTH2_ICON':'fa-key','OAUTH2_BUTTON_COLOR':'#ff5500'}]
 ```
 
 ---
@@ -74,9 +84,10 @@ docker network create backend
 
 ## 📁 Volumes
 
-| Path               | Purpose      |
-| ------------------ | ------------ |
-| /home/pgadmin/data | pgAdmin data |
+| Path | Purpose |
+| ---- | ------- |
+| `/home/pgadmin/data` | persistent application database and settings |
+| `/home/pgadmin/config_local.py` | local configuration overrides (Python settings) |
 
 ---
 
@@ -105,7 +116,7 @@ Use:
 
 * Make sure PostgreSQL is reachable from Docker network
 * Credentials are stored in `.env`
-* Data is persisted in `./data`
+* Data is persisted in `/home/pgadmin/data`
 
 ---
 

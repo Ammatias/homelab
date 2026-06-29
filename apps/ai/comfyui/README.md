@@ -39,11 +39,24 @@ docker compose up -d
 
 ## 📁 Volumes
 
-| Path           | Purpose       |
-| -------------- | ------------- |
-| ./comfy-data   | App data      |
-| ./config       | Configuration |
-| ./custom_nodes | Custom nodes  |
+| Path | Purpose |
+| ---- | ------- |
+| `/home/comfyui/data` | App configuration and general workspace data |
+| `/mnt/comfyui/input` | Host directory containing inputs for workflows |
+| `/mnt/comfyui/output`| Host directory containing generated images/outputs |
+| `/mnt/comfyui/models` | Directory for manually placing AI checkpoints/LoRAs |
+| `/home/comfyui/config` | Workspace settings and configurations |
+| `/home/comfyui/custom_nodes` | Custom node installations |
+
+---
+
+## ⚠️ Network
+
+This setup uses an external Docker network for reverse proxy access:
+
+```bash
+docker network create frontend
+```
 
 ---
 

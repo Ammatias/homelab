@@ -33,21 +33,22 @@ Edit `.env` file:
 
 ```env
 APP_FULL_BASE_URL=https://your-domain.com
+DATASOURCES_DEFAULT_URL=postgres://user:password@postgres:5432/passbolt?schema=passbolt
 
-DATASOURCES_DEFAULT_URL=postgres://user:password@postgres_ip:5432/passbolt
-
-EMAIL_TRANSPORT_DEFAULT_USERNAME=
-EMAIL_TRANSPORT_DEFAULT_PASSWORD=
-EMAIL_DEFAULT_FROM=
+EMAIL_TRANSPORT_DEFAULT_HOST=smtp.gmail.com
+EMAIL_TRANSPORT_DEFAULT_PORT=587
+EMAIL_TRANSPORT_DEFAULT_USERNAME=user@gmail.com
+EMAIL_TRANSPORT_DEFAULT_PASSWORD=pass
+EMAIL_TRANSPORT_DEFAULT_TLS=true
+EMAIL_DEFAULT_FROM=user@gmail.com
 ```
 
 ---
 
 ### 📌 Notes
 
-* Replace `postgres_ip` with your PostgreSQL host
-* Make sure PostgreSQL is reachable from Docker
-* SMTP is required for user invitations
+* The database host is configured as `postgres` (Passbolt resolves the PostgreSQL container name in the shared `backend` network)
+* SMTP configuration is required for user invitations and setup
 
 ---
 
@@ -75,10 +76,11 @@ Make sure:
 
 ## 🌐 Network
 
-This setup uses an external Docker network:
+This setup uses external Docker networks:
 
 ```bash
 docker network create frontend
+docker network create backend
 ```
 
 ---

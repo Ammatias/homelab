@@ -43,7 +43,11 @@ See full architecture in docs:
 
 * Traefik (reverse proxy, system service)
 * Dockhand (container management UI)
-* Watchtower (auto updates)
+### ⚙️ Infrastructure
+
+* Traefik (reverse proxy, system service)
+* Dockhand (container management UI)
+* Hawser (Docker remote API proxy)
 
 ---
 
@@ -57,10 +61,15 @@ See full architecture in docs:
 
 ### 🎬 Media Stack
 
-* Radarr / Sonarr (media management)
+* Radarr / Sonarr / Lidarr (media management)
 * Prowlarr (indexers)
-* Jellyseerr (requests)
-* FlareSolverr (anti-bot bypass)
+* Seerr (requests)
+
+---
+
+### 🎮 Game Cache
+
+* Lancache (game cache & DNS server)
 
 ---
 
@@ -68,6 +77,8 @@ See full architecture in docs:
 
 * KoboldCpp (local LLM inference)
 * SillyTavern (chat UI)
+* LiteLLM (LLM proxy/gateway)
+* OpenWebUI (chat UI interface)
 * ComfyUI (image generation — experimental)
 
 ---
@@ -75,7 +86,6 @@ See full architecture in docs:
 ### 🧰 Tools & UI
 
 * Homepage (dashboard)
-* Dockhand (container UI)
 * pgAdmin (database management)
 * Trilium (notes / knowledge base)
 
@@ -83,8 +93,8 @@ See full architecture in docs:
 
 ## 🌐 Networking
 
-* External `proxy` network (Traefik routing)
-* Internal service networks
+* External `frontend` network (public-facing proxy routing)
+* External `backend` network (internal service communication & databases)
 * Domain-based routing (`*.domain.ru`)
 
 ---

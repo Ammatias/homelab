@@ -129,6 +129,6 @@ Build a **reproducible and practical self-hosted system**
 
                     🌐 Networks
 
-- proxy → Traefik ↔ services
-- database → services ↔ PostgreSQL
+- frontend → Traefik ↔ services
+- backend → services ↔ PostgreSQL / internal services
 

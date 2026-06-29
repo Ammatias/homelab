@@ -34,10 +34,12 @@ docker compose up -d
 Edit `.env` file:
 
 ```env
-AUTHENTIK_SECRET_KEY=
-POSTGRES_USER=authentik
-POSTGRES_PASSWORD=authentik
-POSTGRES_DB=authentik
+SECRET_KEY=your-secret-key
+POSTGRESQL_HOST=postgres
+POSTGRESQL_PORT=5432
+POSTGRESQL_USER=authentik
+POSTGRESQL_PASSWORD=secure-db-password
+POSTGRESQL_NAME=authentik
 ```
 
 Generate secret key:
@@ -58,10 +60,13 @@ openssl rand -base64 32
 ### Optional (Email)
 
 ```env
-AUTHENTIK_EMAIL_HOST=
-AUTHENTIK_EMAIL_PORT=587
-AUTHENTIK_EMAIL_USERNAME=
-AUTHENTIK_EMAIL_PASSWORD=
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USERNAME=user@gmail.com
+EMAIL_PASSWORD=app-specific-password
+EMAIL_FROM=user@gmail.com
+EMAIL_USE_TLS=true
+EMAIL_USE_SSL=false
 ```
 
 ---

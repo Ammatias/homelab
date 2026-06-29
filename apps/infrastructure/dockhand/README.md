@@ -11,6 +11,8 @@ Lightweight **Docker container management UI**.
 ```bash
 git clone https://github.com/Ammatias/homelab
 cd homelab/apps/infrastructure/dockhand
+cp .env.example .env
+# edit .env to configure database connectivity
 docker compose up -d
 ```
 
@@ -24,7 +26,11 @@ docker compose up -d
 
 ## ⚙️ Configuration
 
-No additional configuration required.
+Edit `.env`:
+
+```env
+DATABASE_URL=postgres://user:pass@postgres:5432/dockhand
+```
 
 ---
 
