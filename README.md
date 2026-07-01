@@ -43,10 +43,6 @@ See full architecture in docs:
 
 * Traefik (reverse proxy, system service)
 * Dockhand (container management UI)
-### ⚙️ Infrastructure
-
-* Traefik (reverse proxy, system service)
-* Dockhand (container management UI)
 * Hawser (Docker remote API proxy)
 
 ---
@@ -67,9 +63,12 @@ See full architecture in docs:
 
 ---
 
-### 🎮 Game Cache
+### 🎮 Game Services & Cache
 
-* Lancache (game cache & DNS server)
+* [Lancache](apps/game/lancache/README.md) (game cache & DNS server)
+* [Pterodactyl Panel](apps/game/pterodactyl/README.md) (game management panel)
+* [Wings](apps/game/wings/README.md) (Pterodactyl node daemon)
+* [Crafty Controller](apps/game/crafty/README.md) (Minecraft server manager)
 
 ---
 
