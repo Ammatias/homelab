@@ -1,0 +1,33 @@
+services:
+  wings:
+    image: ghcr.io/pterodactyl/wings:v1.6.1
+    container_name: wings
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+      - 2022:2022
+      - 443:443
+    tty: true
+    environment:
+      - TZ=Asia/Yekaterinburg
+      - WINGS_UID=988
+      - WINGS_GID=988
+      - WINGS_USERNAME=pterodactyl
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/
+      - /home/pterodactyl/:/etc/pterodactyl/
+      - /home/pterodactyl/:/var/lib/pterodactyl/
+      - /home/pterodactyl/log/:/var/log/pterodactyl/
+      - /home/pterodactyl/tmp/:/tmp/pterodactyl/
+      - /etc/ssl/certs:/etc/ssl/certs:ro
+      # you may need /srv/daemon-data if you are upgrading from an old daemon
+      #- "/srv/daemon-data/:/srv/daemon-data/"
+      # Required for ssl if you use let's encrypt. uncomment to use.
+      #- "/etc/letsencrypt/:/etc/letsencrypt/"
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
