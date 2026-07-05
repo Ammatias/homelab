@@ -7,7 +7,7 @@ services:
       - 3000:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/app/data
+      - /home/dockhand:/app/data
     environment:
       - DATABASE_URL=${DATABASE_URL}
     security_opt:
