@@ -1,0 +1,5 @@
+default:
+    user: root@pam
+    token_name: "monitoring"
+    token_value: "key"
+    verify_ssl: false

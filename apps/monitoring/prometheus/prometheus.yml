@@ -1,0 +1,60 @@
+global:
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 30s
+  body_size_limit: 0MB
+  sample_limit: 2500
+  target_limit: 30
+  label_limit: 30
+  label_name_length_limit: 300
+  label_value_length_limit: 300
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  # external_labels:
+  #  monitor: 'codelab-monitor'
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'traefik'
+    scrape_interval: 5s
+    sample_limit: 50000
+    static_configs:
+      - targets: ['traefik_ip:8082']
+
+  - job_name: 'pve-1'
+    scrape_interval: 5s
+    metrics_path: /pve
+    params:
+      module: [default]
+    static_configs:
+      - targets: ['proxmox_ip']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: pve-exporter_ip:9221
+
+  - job_name: 'Synology DSM'
+    scrape_interval: 5s
+    metrics_path: /snmp
+    params:
+      module: [synology]
+      auth: [public_v2]
+    static_configs:
+      - targets: [synology_ip]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp-exporter_ip:9116
