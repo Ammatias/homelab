@@ -34,30 +34,30 @@ See full architecture in docs:
 
 ### 🔐 Security
 
-* Authentik (SSO / identity provider)
-* Passbolt (password manager)
+* [Authentik](apps/security/authentik/README.md) (SSO / identity provider)
+* [Passbolt](apps/security/passbolt/README.md) (password manager)
 
 ---
 
 ### ⚙️ Infrastructure
 
-* Traefik (reverse proxy, system service)
-* Dockhand (container management UI)
-* Hawser (Docker remote API proxy)
+* [Traefik](apps/infrastructure/traefik/README.md) (reverse proxy, system service)
+* [Dockhand](apps/infrastructure/dockhand/README.md) (container management UI)
+* [Hawser](apps/infrastructure/hawser/README.md) (Docker remote API proxy)
 
 ---
 
 ### 📊 Monitoring
 
-* Prometheus (metrics)
-* Grafana (dashboards)
-* Uptime Kuma (uptime monitoring)
+* [Prometheus](apps/monitoring/prometheus/README.md) (metrics)
+* [Grafana](apps/monitoring/grafana/README.md) (dashboards)
+* [pve-exporter](apps/monitoring/pve-exporter/README.md) (ProxmoxVE monitoring fo Grafana)
 
 ---
 
 ### 🎬 Media Stack
 
-* Radarr / Sonarr / Lidarr (media management)
+* Radarr / Sonarr / Lidarr (media management) [arr](apps/media/arr/README.md)
 * Prowlarr (indexers)
 * Seerr (requests)
 
@@ -74,19 +74,19 @@ See full architecture in docs:
 
 ### 🤖 AI
 
-* KoboldCpp (local LLM inference)
-* SillyTavern (chat UI)
-* LiteLLM (LLM proxy/gateway)
-* OpenWebUI (chat UI interface)
-* ComfyUI (image generation — experimental)
+* [KoboldCpp](apps/ai/coboldcpp/README.md) (local LLM inference)
+* [SillyTavern](apps/ai/sillytavern/README.md) (chat UI)
+* [LiteLLM](apps/ai/litellm/README.md) (LLM proxy/gateway)
+* [OpenWebUI](apps/ai/openwebui/README.md) (chat UI interface)
+* [ComfyUI](apps/ai/comfyui/README.md) (image generation — experimental)
 
 ---
 
 ### 🧰 Tools & UI
 
-* Homepage (dashboard)
-* pgAdmin (database management)
-* Trilium (notes / knowledge base)
+* [Homepage](apps/dashboard/homepage/README.md) (dashboard)
+* [pgAdmin](apps/infrastructure/pgadmin/README.md) (database management)
+* [Trilium](apps/infrastructure/trilium/README.md) (notes / knowledge base)
 
 ---
 
