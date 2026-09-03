@@ -57,9 +57,7 @@ See full architecture in docs:
 
 ### 🎬 Media Stack
 
-* Radarr / Sonarr / Lidarr (media management) [arr](apps/media/arr/README.md)
-* Prowlarr (indexers)
-* Seerr (requests)
+* [Radarr / Sonarr / Lidarr / Prowlarr / Seerr](apps/media/arr/README.md) (media management)
 
 ---
 
