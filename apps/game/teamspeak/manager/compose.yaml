@@ -1,0 +1,128 @@
+services:
+  backend:
+    image: clusterzx/ts6-manager:backend
+    container_name: ts6-manager-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: file:/app/packages/backend/data/ts6webui.db
+      JWT_SECRET: ${JWT_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      TS_ALLOW_SELF_SIGNED: ${TS_ALLOW_SELF_SIGNED:-false}
+      JWT_ACCESS_EXPIRY: 15m
+      TS_INTERNAL_HTTP_HOSTS: request-music-controller
+      JWT_REFRESH_EXPIRY: 7d
+      FRONTEND_URL: ${FRONTEND_URL}
+      MUSIC_DIR: /data/music
+      SIDECAR_URL: http://sidecar:9800
+    volumes:
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/backend-data:/app/packages/backend/data
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/music:/data/music
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/bin/yt-dlp:/usr/local/bin/yt-dlp:ro
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/bin/deno:/usr/local/bin/deno:ro
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/yt-dlp-plugins:/root/.config/yt-dlp/plugins:ro
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/yt-dlp-config:/root/.config/yt-dlp/config:ro
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/request-bot/ts6-url-validator.js:/app/packages/backend/dist/utils/url-validator.js:ro
+    security_opt:
+      - no-new-privileges=true
+    sysctls:
+      - net.ipv4.tcp_mtu_probing=2
+      - net.ipv4.tcp_base_mss=1400
+    extra_hosts:
+      - "rr5---sn-4g5edndd.googlevideo.com:173.194.164.212"
+    depends_on:
+      - sidecar
+      - bgutil-provider
+    networks:
+      frontend: {}
+      ts6-manager-egress:
+        gw_priority: 1
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  bgutil-provider:
+    image: brainicism/bgutil-ytdlp-pot-provider:1.3.2
+    container_name: ts6-manager-bgutil-provider
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges=true
+    networks:
+      - frontend
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  sidecar:
+    image: clusterzx/ts6-manager:sidecar
+    container_name: ts6-manager-sidecar
+    restart: unless-stopped
+    environment:
+      SIDECAR_PORT: 9800
+    security_opt:
+      - no-new-privileges=true
+    networks:
+      - frontend
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  request-music-controller:
+    image: node:20-alpine
+    container_name: ts6-manager-request-music-controller
+    restart: unless-stopped
+    command: ["node", "/app/controller.mjs"]
+    environment:
+      MANAGER_BACKEND_URL: http://backend:3001
+      REQUEST_BOT_ID: ${REQUEST_BOT_ID:-2}
+      VERIFIED_GROUP_ID: ${VERIFIED_GROUP_ID:-10}
+      PUBLIC_TEAMSPEAK_HOST: ${PUBLIC_TEAMSPEAK_HOST}
+      MANAGER_USER_ID: ${MANAGER_USER_ID:-1}
+      MANAGER_USERNAME: ${MANAGER_USERNAME:-controller}
+      ALLOWED_CHANNEL_IDS: ${ALLOWED_CHANNEL_IDS}
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/request-bot/request-music-controller.mjs:/app/controller.mjs:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges=true
+    depends_on:
+      - backend
+    networks:
+      - frontend
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  frontend:
+    image: clusterzx/ts6-manager:frontend
+    container_name: ts6-manager-frontend
+    restart: unless-stopped
+    ports:
+      - 3000:80
+    security_opt:
+      - no-new-privileges=true
+    depends_on:
+      - backend
+    networks:
+      - frontend
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+networks:
+  frontend:
+    external: true
+  ts6-manager-egress:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: "1492"

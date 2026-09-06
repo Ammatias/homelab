@@ -1,0 +1,25 @@
+services:
+  teamspeak:
+    image: teamspeaksystems/teamspeak6-server:6.0.0-beta12.1
+    container_name: teamspeak
+    restart: unless-stopped
+    environment:
+      - TSSERVER_LICENSE_ACCEPTED=${TSSERVER_LICENSE_ACCEPTED}
+      - TSSERVER_QUERY_HTTP_ENABLED=${TSSERVER_QUERY_HTTP_ENABLED}
+      - TSSERVER_QUERY_SSH_ENABLED=${TSSERVER_QUERY_SSH_ENABLED}
+      - TSSERVER_QUERY_ADMIN_PASSWORD=${TSSERVER_QUERY_ADMIN_PASSWORD}
+    security_opt:
+      - no-new-privileges=true
+    ulimits:
+      core: 0
+    ports:
+      - 9987:9987/udp
+      - 30033:30033/tcp
+    volumes:
+      - ${TEAMSPEAK_DATA_DIR:-/home/teamspeak/data}:/var/tsserver
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true

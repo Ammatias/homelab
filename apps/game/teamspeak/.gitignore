@@ -1,0 +1,6 @@
+.env
+*.key
+*.pem
+cookies.txt
+server-data/
+manager-data/

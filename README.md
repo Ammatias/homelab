@@ -67,6 +67,7 @@ See full architecture in docs:
 * [Pterodactyl Panel](apps/game/pterodactyl/README.md) (game management panel)
 * [Wings](apps/game/wings/README.md) (Pterodactyl node daemon)
 * [Crafty Controller](apps/game/crafty/README.md) (Minecraft server manager)
+* [TeamSpeak 6](apps/game/teamspeak/README.md) (voice server, TS6 Manager, music bots)
 
 ---
 
