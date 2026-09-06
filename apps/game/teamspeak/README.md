@@ -31,7 +31,6 @@ teamspeak/
 │   ├── request-music-controller.mjs
 │   └── ts6-url-validator.js
 ├── assets/
-├── docs/
 ├── tools/prepare_ts_icons.py
 └── .env.example
 ```
@@ -115,5 +114,3 @@ Then verify:
 - Guest cannot speak, chat, move to ordinary channels or access files before confirmation;
 - the permanent music bot stays out of AFK;
 - the request bot exits after its queue finishes.
-
-More implementation details are available in `docs/`.
