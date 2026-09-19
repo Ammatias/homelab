@@ -6,13 +6,9 @@ A modular **self-hosted platform** built with Docker.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Deployment model
 
-```bash
-git clone https://github.com/Ammatias/homelab
-cd homelab/apps/<category>/<service>
-docker compose up -d
-```
+These files are sanitized, portable examples. The live environment is managed through Dockhand; repository files are reviewed, parameterized, and imported there instead of being treated as the current production source of truth. See [deployment guidance](docs/deployment.md).
 
 ---
 
@@ -51,7 +47,7 @@ See full architecture in docs:
 
 * [Prometheus](apps/monitoring/prometheus/README.md) (metrics)
 * [Grafana](apps/monitoring/grafana/README.md) (dashboards)
-* [pve-exporter](apps/monitoring/pve-exporter/README.md) (ProxmoxVE monitoring fo Grafana)
+* [pve-exporter](apps/monitoring/pve-exporter/README.md) (Proxmox VE metrics for Prometheus and Grafana)
 
 ---
 
@@ -85,7 +81,7 @@ See full architecture in docs:
 
 * [Homepage](apps/dashboard/homepage/README.md) (dashboard)
 * [pgAdmin](apps/infrastructure/pgadmin/README.md) (database management)
-* [Trilium](apps/infrastructure/trilium/README.md) (notes / knowledge base)
+* [Trilium](apps/infrastructure/trillium/README.md) (notes / knowledge base)
 
 ---
 
@@ -110,7 +106,7 @@ See full architecture in docs:
 
 Each service:
 
-* Uses `.env`
+* Uses `.env.example` templates; real `.env` files are never published
 * Uses relative paths (`./`)
 * Is fully portable
 
@@ -118,7 +114,6 @@ Each service:
 
 ## 💡 Features
 
-* One-command deployments
 * Clean and minimal configs
 * Real setups — not tutorials
 * Fully self-hosted (including AI)
@@ -145,7 +140,8 @@ Each service:
 
 ## 📌 Notes
 
-* These are real configurations used in my homelab
+* These are sanitized examples derived from real configurations
+* Runtime state and secrets are intentionally excluded
 * Some services are experimental (AI stack)
 * Designed for learning and real usage
 
