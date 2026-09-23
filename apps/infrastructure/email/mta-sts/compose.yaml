@@ -1,0 +1,16 @@
+services:
+  mta-sts:
+    image: nginx:1.28.0-alpine
+    restart: unless-stopped
+    ports:
+      - "${MTA_STS_BIND:-127.0.0.1}:${MTA_STS_PORT:-8081}:80"
+    volumes:
+      - ./.well-known:/usr/share/nginx/html/.well-known:ro
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true

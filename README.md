@@ -43,6 +43,7 @@ See full architecture in docs:
 * Email
   * [Mailcow](apps/infrastructure/email/mailcow/README.md) (mail server stack)
   * [Bulwark Webmail](apps/infrastructure/email/bulwark/README.md) (webmail and Mailcow bridge)
+  * [MTA-STS](apps/infrastructure/email/mta-sts/README.md) (SMTP transport security policy)
 
 ---
 
