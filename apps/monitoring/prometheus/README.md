@@ -74,8 +74,8 @@ docker network create backend
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/prometheus/config/prometheus.yml` | Main configuration file |
-| `/home/prometheus/data` | Metrics time-series data directory |
+| `./prometheus.yml` | Main configuration file |
+| `${DATA_ROOT}` | Metrics time-series data directory |
 
 ---
 
@@ -88,8 +88,8 @@ docker network create backend
 
 ## 📌 Notes
 
-* Make sure `prometheus.yml` exists at `/home/prometheus/config/prometheus.yml` before starting
-* Data is stored locally in `/home/prometheus/data`
+* Make sure `prometheus.yml` exists at `./prometheus.yml` before starting
+* Data is stored locally in `${DATA_ROOT}`
 * Default config only monitors Prometheus itself
 
 ---

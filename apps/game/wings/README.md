@@ -15,7 +15,7 @@ cd homelab/apps/game/wings
 ```
 
 2. Generate the node configuration on your Pterodactyl Panel.
-3. Save the generated configuration as `config.yml` into `/home/pterodactyl/config.yml` on the host machine.
+3. Save the generated configuration as `config.yml` into `${DATA_ROOT}/config.yml` on the host machine.
 4. Run the daemon:
 ```bash
 docker compose up -d
@@ -49,10 +49,10 @@ Wings relies heavily on the `config.yml` provided by the Pterodactyl Panel. The 
 | ---- | ------- |
 | `/var/run/docker.sock` | Docker daemon socket for managing container lifecycles |
 | `/var/lib/docker/containers/` | Path for accessing container log outputs |
-| `/home/pterodactyl/` | Maps to `/etc/pterodactyl/` for daemon config (`config.yml`) |
-| `/home/pterodactyl/` | Maps to `/var/lib/pterodactyl/` for game server files and volumes |
-| `/home/pterodactyl/log/` | Path for Wings application log output |
-| `/home/pterodactyl/tmp/` | Temporary files directory for server operations |
+| `${DATA_ROOT}/` | Maps to `/etc/pterodactyl/` for daemon config (`config.yml`) |
+| `${DATA_ROOT}/` | Maps to `/var/lib/pterodactyl/` for game server files and volumes |
+| `${DATA_ROOT}/log/` | Path for Wings application log output |
+| `${DATA_ROOT}/tmp/` | Temporary files directory for server operations |
 | `/etc/ssl/certs` | Read-only mapping for system SSL root certificates |
 
 ---

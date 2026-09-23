@@ -89,8 +89,8 @@ docker network create backend
 
 | Path               | Purpose  |
 | ------------------ | -------- |
-| /home/passbolt/gpg | GPG keys |
-| /home/passbolt/jwt | JWT keys |
+| ${DATA_ROOT}/gpg | GPG keys |
+| ${DATA_ROOT}/jwt | JWT keys |
 
 ---
 

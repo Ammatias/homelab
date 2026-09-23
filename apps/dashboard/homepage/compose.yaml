@@ -14,9 +14,9 @@ services:
     env_file:
       - .env
     volumes:
-      - /home/homepage:/app/config
-      - /home/homepage/images:/app/public/images
-      - /home/homepage/icons:/app/public/icons
+      - ./app:/app/config
+      - ${DATA_ROOT:-./data}/images:/app/public/images
+      - ${DATA_ROOT:-./data}/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - frontend

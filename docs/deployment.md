@@ -22,6 +22,12 @@ This repository contains sanitized templates. It does not contain production `.e
 
 Do not run these examples unchanged against a production host. Paths and network names are illustrative and may not match another environment.
 
+## Storage paths
+
+Portable examples use `${DATA_ROOT:-./data}` for service state and `${MEDIA_ROOT:-./media}` for shared media. The relative defaults are suitable for local evaluation. In Dockhand, set these variables to the intended absolute host directories, such as `/home/<service>`, so persistent data remains outside Hawser's stack working copy.
+
+System mounts such as the Docker socket, `/lib/modules`, `/etc/localtime`, and Docker container logs remain explicit when the application requires host integration. Review each of these mounts before deployment because they grant capabilities beyond ordinary application storage.
+
 ## Networks
 
 Most examples expect external `frontend` and/or `backend` networks. Create and manage them explicitly for the target environment before deploying dependent stacks.

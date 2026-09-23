@@ -40,9 +40,9 @@ docker compose up -d
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/jellyfin/config` | Configuration files and app settings |
-| `/home/jellyfin/cache`  | Server caching (images, transcode cache, metadata) |
-| `/mnt/media`            | Host media library directory (movies, series, music) |
+| `${DATA_ROOT}/config` | Configuration files and app settings |
+| `${DATA_ROOT}/cache`  | Server caching (images, transcode cache, metadata) |
+| `${MEDIA_ROOT}`            | Host media library directory (movies, series, music) |
 
 ---
 

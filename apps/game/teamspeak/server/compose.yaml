@@ -16,7 +16,7 @@ services:
       - 9987:9987/udp
       - 30033:30033/tcp
     volumes:
-      - ${TEAMSPEAK_DATA_DIR:-/home/teamspeak/data}:/var/tsserver
+      - ${TEAMSPEAK_DATA_DIR:-./data}:/var/tsserver
     networks:
       - frontend
 

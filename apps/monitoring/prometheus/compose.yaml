@@ -6,8 +6,8 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - /home/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - /home/prometheus/data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${DATA_ROOT:-./data}:/prometheus
     security_opt:
       - no-new-privileges=true
     networks:

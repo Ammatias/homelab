@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
-      - /home/postgres/data:/var/lib/postgresql/data
+      - ${DATA_ROOT:-./data}:/var/lib/postgresql/data
     security_opt:
       - no-new-privileges=true
     env_file:

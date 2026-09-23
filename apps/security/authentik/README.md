@@ -117,8 +117,8 @@ docker network create backend
 
 | Path                             | Purpose             |
 | -------------------------------- | ------------------- |
-| /home/authentik/media            | Uploaded files      |
-| /home/authentik/custom-templates | Custom UI templates |
+| ${DATA_ROOT}/media            | Uploaded files      |
+| ${DATA_ROOT}/custom-templates | Custom UI templates |
 
 ---
 

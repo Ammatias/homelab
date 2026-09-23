@@ -16,10 +16,10 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/containers/:/var/lib/docker/containers/
-      - /home/pterodactyl/:/etc/pterodactyl/
-      - /home/pterodactyl/:/var/lib/pterodactyl/
-      - /home/pterodactyl/log/:/var/log/pterodactyl/
-      - /home/pterodactyl/tmp/:/tmp/pterodactyl/
+      - ${DATA_ROOT:-./data}/:/etc/pterodactyl/
+      - ${DATA_ROOT:-./data}/:/var/lib/pterodactyl/
+      - ${DATA_ROOT:-./data}/log/:/var/log/pterodactyl/
+      - ${DATA_ROOT:-./data}/tmp/:/tmp/pterodactyl/
       - /etc/ssl/certs:/etc/ssl/certs:ro
       # you may need /srv/daemon-data if you are upgrading from an old daemon
       #- "/srv/daemon-data/:/srv/daemon-data/"

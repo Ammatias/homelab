@@ -16,7 +16,7 @@ services:
       - ENABLE_LOGIN_FORM=true
       - OAUTH_MERGE_ACCOUNTS_BY_EMAIL=true
     volumes:
-      - /home/openwebui:/app/backend/data
+      - ${DATA_ROOT:-./data}:/app/backend/data
     security_opt:
       - no-new-privileges=true
     networks:

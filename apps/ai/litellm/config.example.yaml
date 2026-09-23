@@ -1,0 +1,6 @@
+model_list:
+  - model_name: local-model
+    litellm_params:
+      api_base: http://koboldcpp:5001/v1
+      api_key: none
+      model: openai/local-model

@@ -7,7 +7,7 @@ services:
     ports:
       - 3002:3000
     volumes:
-      - /home/grafana/data:/var/lib/grafana
+      - ${DATA_ROOT:-./data}:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}

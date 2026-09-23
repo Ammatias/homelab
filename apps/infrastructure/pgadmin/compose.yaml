@@ -12,8 +12,7 @@ services:
       - PGADMIN_CONFIG_OAUTH2_AUTO_CREATE_USER=${AUTO_CREATE_USER}
       - PGADMIN_CONFIG_OAUTH2_CONFIG=${OAUTH2_CONFIG}
     volumes:
-      - /home/pgadmin/data:/var/lib/pgadmin
-      - /home/pgadmin/config_local.py:/pgadmin4/config_local.py
+      - ${DATA_ROOT:-./data}:/var/lib/pgadmin
     env_file:
       - .env
     networks:

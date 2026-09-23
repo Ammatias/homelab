@@ -17,13 +17,13 @@ services:
       MUSIC_DIR: /data/music
       SIDECAR_URL: http://sidecar:9800
     volumes:
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/backend-data:/app/packages/backend/data
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/music:/data/music
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/bin/yt-dlp:/usr/local/bin/yt-dlp:ro
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/bin/deno:/usr/local/bin/deno:ro
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/yt-dlp-plugins:/root/.config/yt-dlp/plugins:ro
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/yt-dlp-config:/root/.config/yt-dlp/config:ro
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/request-bot/ts6-url-validator.js:/app/packages/backend/dist/utils/url-validator.js:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/backend-data:/app/packages/backend/data
+      - ${TS6_MANAGER_DATA_DIR:-./data}/music:/data/music
+      - ${TS6_MANAGER_DATA_DIR:-./data}/bin/yt-dlp:/usr/local/bin/yt-dlp:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/bin/deno:/usr/local/bin/deno:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/yt-dlp-plugins:/root/.config/yt-dlp/plugins:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/yt-dlp-config:/root/.config/yt-dlp/config:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/ts6-url-validator.js:/app/packages/backend/dist/utils/url-validator.js:ro
     security_opt:
       - no-new-privileges=true
     sysctls:
@@ -87,7 +87,7 @@ services:
       ALLOWED_CHANNEL_IDS: ${ALLOWED_CHANNEL_IDS}
       JWT_SECRET: ${JWT_SECRET}
     volumes:
-      - ${TS6_MANAGER_DATA_DIR:-/home/teamspeak/ts6-manager}/request-bot/request-music-controller.mjs:/app/controller.mjs:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/request-music-controller.mjs:/app/controller.mjs:ro
     read_only: true
     tmpfs:
       - /tmp:size=16m,mode=1777

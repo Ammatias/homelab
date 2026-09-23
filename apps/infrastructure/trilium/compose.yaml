@@ -16,7 +16,7 @@ services:
       TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERNAME: ${TRILIUM_ISSUER_NAME}
       TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERICON: "https://cdn.jsdelivr.net/gh/selfhst/icons/svg/authentik.svg"
     volumes:
-      - /home/trilium:/home/node/trilium-data
+      - ${DATA_ROOT:-./data}:/home/node/trilium-data
     security_opt:
       - no-new-privileges=true
     networks:

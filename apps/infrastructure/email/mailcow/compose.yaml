@@ -5,8 +5,8 @@ services:
     - TZ=${TZ}
     - SKIP_UNBOUND_HEALTHCHECK=${SKIP_UNBOUND_HEALTHCHECK:-n}
     volumes:
-    - /home/mailcow/data/hooks/unbound:/hooks:Z
-    - /home/mailcow/data/conf/unbound/unbound.conf:/etc/unbound/unbound.conf:ro,Z
+    - ${DATA_ROOT:-./data}/hooks/unbound:/hooks:Z
+    - ${DATA_ROOT:-./data}/conf/unbound/unbound.conf:/etc/unbound/unbound.conf:ro,Z
     restart: always
     tty: true
     networks:
@@ -28,7 +28,7 @@ services:
     volumes:
     - mysql-vol-1:/var/lib/mysql/
     - mysql-socket-vol-1:/var/run/mysqld/:z
-    - /home/mailcow/data/conf/mysql/:/etc/mysql/conf.d/:ro,Z
+    - ${DATA_ROOT:-./data}/conf/mysql/:/etc/mysql/conf.d/:ro,Z
     environment:
     - TZ=${TZ}
     - MYSQL_ROOT_PASSWORD=${DBROOT}
@@ -55,7 +55,7 @@ services:
     - /redis-conf.sh
     volumes:
     - redis-vol-1:/data/
-    - /home/mailcow/data/conf/redis/redis-conf.sh:/redis-conf.sh:z
+    - ${DATA_ROOT:-./data}/conf/redis/redis-conf.sh:/redis-conf.sh:z
     restart: always
     depends_on:
     - netfilter-mailcow
@@ -89,7 +89,7 @@ services:
     - TZ=${TZ}
     - SKIP_CLAMD=${SKIP_CLAMD:-n}
     volumes:
-    - /home/mailcow/data/conf/clamav/:/etc/clamav/:Z
+    - ${DATA_ROOT:-./data}/conf/clamav/:/etc/clamav/:Z
     - clamd-db-vol-1:/var/lib/clamav
     networks:
       mailcow-network:
@@ -115,14 +115,14 @@ services:
     - REDISPASS=${REDISPASS}
     - SPAMHAUS_DQS_KEY=${SPAMHAUS_DQS_KEY:-}
     volumes:
-    - /home/mailcow/data/hooks/rspamd:/hooks:Z
-    - /home/mailcow/data/conf/rspamd/custom/:/etc/rspamd/custom:z
-    - /home/mailcow/data/conf/rspamd/override.d/:/etc/rspamd/override.d:Z
-    - /home/mailcow/data/conf/rspamd/local.d/:/etc/rspamd/local.d:Z
-    - /home/mailcow/data/conf/rspamd/plugins.d/:/etc/rspamd/plugins.d:Z
-    - /home/mailcow/data/conf/rspamd/lua/:/etc/rspamd/lua/:ro,Z
-    - /home/mailcow/data/conf/rspamd/rspamd.conf.local:/etc/rspamd/rspamd.conf.local:Z
-    - /home/mailcow/data/conf/rspamd/rspamd.conf.override:/etc/rspamd/rspamd.conf.override:Z
+    - ${DATA_ROOT:-./data}/hooks/rspamd:/hooks:Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/custom/:/etc/rspamd/custom:z
+    - ${DATA_ROOT:-./data}/conf/rspamd/override.d/:/etc/rspamd/override.d:Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/local.d/:/etc/rspamd/local.d:Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/plugins.d/:/etc/rspamd/plugins.d:Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/lua/:/etc/rspamd/lua/:ro,Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/rspamd.conf.local:/etc/rspamd/rspamd.conf.local:Z
+    - ${DATA_ROOT:-./data}/conf/rspamd/rspamd.conf.override:/etc/rspamd/rspamd.conf.override:Z
     - rspamd-vol-1:/var/lib/rspamd
     restart: always
     hostname: rspamd
@@ -143,31 +143,31 @@ services:
     depends_on:
     - redis-mailcow
     volumes:
-    - /home/mailcow/data/hooks/phpfpm:/hooks:Z
-    - /home/mailcow/data/web:/web:z
-    - /home/mailcow/data/conf/rspamd/dynmaps:/dynmaps:ro,z
-    - /home/mailcow/data/conf/rspamd/custom/:/rspamd_custom_maps:z
-    - /home/mailcow/data/conf/dovecot/auth/mailcowauth.php:/mailcowauth/mailcowauth.php:z
-    - /home/mailcow/data/web/inc/functions.inc.php:/mailcowauth/functions.inc.php:z
-    - /home/mailcow/data/web/inc/functions.auth.inc.php:/mailcowauth/functions.auth.inc.php:z
-    - /home/mailcow/data/web/inc/sessions.inc.php:/mailcowauth/sessions.inc.php:z
-    - /home/mailcow/data/web/inc/functions.mailbox.inc.php:/mailcowauth/functions.mailbox.inc.php:z
-    - /home/mailcow/data/web/inc/functions.ratelimit.inc.php:/mailcowauth/functions.ratelimit.inc.php:z
-    - /home/mailcow/data/web/inc/functions.acl.inc.php:/mailcowauth/functions.acl.inc.php:z
+    - ${DATA_ROOT:-./data}/hooks/phpfpm:/hooks:Z
+    - ${DATA_ROOT:-./data}/web:/web:z
+    - ${DATA_ROOT:-./data}/conf/rspamd/dynmaps:/dynmaps:ro,z
+    - ${DATA_ROOT:-./data}/conf/rspamd/custom/:/rspamd_custom_maps:z
+    - ${DATA_ROOT:-./data}/conf/dovecot/auth/mailcowauth.php:/mailcowauth/mailcowauth.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.inc.php:/mailcowauth/functions.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.auth.inc.php:/mailcowauth/functions.auth.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/sessions.inc.php:/mailcowauth/sessions.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.mailbox.inc.php:/mailcowauth/functions.mailbox.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.ratelimit.inc.php:/mailcowauth/functions.ratelimit.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.acl.inc.php:/mailcowauth/functions.acl.inc.php:z
     - rspamd-vol-1:/var/lib/rspamd
     - mysql-socket-vol-1:/var/run/mysqld/:z
-    - /home/mailcow/data/conf/sogo/:/etc/sogo/:z
-    - /home/mailcow/data/conf/rspamd/meta_exporter:/meta_exporter:ro,z
-    - /home/mailcow/data/conf/phpfpm/crons:/crons:z
-    - /home/mailcow/data/conf/phpfpm/sogo-sso/:/etc/sogo-sso/:z
-    - /home/mailcow/data/conf/phpfpm/php-fpm.d/pools.conf:/usr/local/etc/php-fpm.d/z-pools.conf:Z
-    - /home/mailcow/data/conf/phpfpm/php-conf.d/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:Z
-    - /home/mailcow/data/conf/phpfpm/php-conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini:Z
-    - /home/mailcow/data/conf/phpfpm/php-conf.d/other.ini:/usr/local/etc/php/conf.d/zzz-other.ini:Z
-    - /home/mailcow/data/conf/dovecot/global_sieve_before:/global_sieve/before:z
-    - /home/mailcow/data/conf/dovecot/global_sieve_after:/global_sieve/after:z
-    - /home/mailcow/data/assets/templates:/tpls:z
-    - /home/mailcow/data/conf/nginx/:/etc/nginx/conf.d/:z
+    - ${DATA_ROOT:-./data}/conf/sogo/:/etc/sogo/:z
+    - ${DATA_ROOT:-./data}/conf/rspamd/meta_exporter:/meta_exporter:ro,z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/crons:/crons:z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/sogo-sso/:/etc/sogo-sso/:z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/php-fpm.d/pools.conf:/usr/local/etc/php-fpm.d/z-pools.conf:Z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/php-conf.d/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:Z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/php-conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini:Z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/php-conf.d/other.ini:/usr/local/etc/php/conf.d/zzz-other.ini:Z
+    - ${DATA_ROOT:-./data}/conf/dovecot/global_sieve_before:/global_sieve/before:z
+    - ${DATA_ROOT:-./data}/conf/dovecot/global_sieve_after:/global_sieve/after:z
+    - ${DATA_ROOT:-./data}/assets/templates:/tpls:z
+    - ${DATA_ROOT:-./data}/conf/nginx/:/etc/nginx/conf.d/:z
     dns:
     - ${IPV4_NETWORK:-172.22.1}.254
     environment:
@@ -237,16 +237,16 @@ services:
     cap_add:
     - NET_BIND_SERVICE
     volumes:
-    - /home/mailcow/data/hooks/dovecot:/hooks:Z
-    - /home/mailcow/data/conf/dovecot:/etc/dovecot:z
-    - /home/mailcow/data/assets/ssl:/etc/ssl/mail/:ro,z
-    - /home/mailcow/data/conf/sogo/:/etc/sogo/:z
-    - /home/mailcow/data/conf/phpfpm/sogo-sso/:/etc/phpfpm/:z
+    - ${DATA_ROOT:-./data}/hooks/dovecot:/hooks:Z
+    - ${DATA_ROOT:-./data}/conf/dovecot:/etc/dovecot:z
+    - ${DATA_ROOT:-./data}/assets/ssl:/etc/ssl/mail/:ro,z
+    - ${DATA_ROOT:-./data}/conf/sogo/:/etc/sogo/:z
+    - ${DATA_ROOT:-./data}/conf/phpfpm/sogo-sso/:/etc/phpfpm/:z
     - vmail-vol-1:/var/vmail
     - vmail-index-vol-1:/var/vmail_index
     - crypt-vol-1:/mail_crypt/
-    - /home/mailcow/data/conf/rspamd/custom/:/etc/rspamd/custom:z
-    - /home/mailcow/data/assets/templates:/templates:z
+    - ${DATA_ROOT:-./data}/conf/rspamd/custom/:/etc/rspamd/custom:z
+    - ${DATA_ROOT:-./data}/assets/templates:/templates:z
     - rspamd-vol-1:/var/lib/rspamd
     - mysql-socket-vol-1:/var/run/mysqld/:z
     environment:
@@ -336,9 +336,9 @@ services:
       postfix-tlspol-mailcow:
         condition: service_started
     volumes:
-    - /home/mailcow/data/hooks/postfix:/hooks:Z
-    - /home/mailcow/data/conf/postfix:/opt/postfix/conf:z
-    - /home/mailcow/data/assets/ssl:/etc/ssl/mail/:ro,z
+    - ${DATA_ROOT:-./data}/hooks/postfix:/hooks:Z
+    - ${DATA_ROOT:-./data}/conf/postfix:/opt/postfix/conf:z
+    - ${DATA_ROOT:-./data}/assets/ssl:/etc/ssl/mail/:ro,z
     - postfix-vol-1:/var/spool/postfix
     - crypt-vol-1:/var/lib/zeyple
     - rspamd-vol-1:/var/lib/rspamd
@@ -441,15 +441,15 @@ services:
     - NGINX_USE_PROXY_PROTOCOL=${NGINX_USE_PROXY_PROTOCOL:-n}
     - TRUSTED_PROXIES=${TRUSTED_PROXIES:-}
     volumes:
-    - /home/mailcow/data/web:/web:ro,z
-    - /home/mailcow/data/conf/rspamd/dynmaps:/dynmaps:ro,z
-    - /home/mailcow/data/assets/ssl/:/etc/ssl/mail/:ro,z
-    - /home/mailcow/data/conf/nginx/:/etc/nginx/conf.d/:z
-    - /home/mailcow/data/conf/rspamd/meta_exporter:/meta_exporter:ro,z
-    - /home/mailcow/data/conf/dovecot/auth/mailcowauth.php:/mailcowauth/mailcowauth.php:z
-    - /home/mailcow/data/web/inc/functions.inc.php:/mailcowauth/functions.inc.php:z
-    - /home/mailcow/data/web/inc/functions.auth.inc.php:/mailcowauth/functions.auth.inc.php:z
-    - /home/mailcow/data/web/inc/sessions.inc.php:/mailcowauth/sessions.inc.php:z
+    - ${DATA_ROOT:-./data}/web:/web:ro,z
+    - ${DATA_ROOT:-./data}/conf/rspamd/dynmaps:/dynmaps:ro,z
+    - ${DATA_ROOT:-./data}/assets/ssl/:/etc/ssl/mail/:ro,z
+    - ${DATA_ROOT:-./data}/conf/nginx/:/etc/nginx/conf.d/:z
+    - ${DATA_ROOT:-./data}/conf/rspamd/meta_exporter:/meta_exporter:ro,z
+    - ${DATA_ROOT:-./data}/conf/dovecot/auth/mailcowauth.php:/mailcowauth/mailcowauth.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.inc.php:/mailcowauth/functions.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/functions.auth.inc.php:/mailcowauth/functions.auth.inc.php:z
+    - ${DATA_ROOT:-./data}/web/inc/sessions.inc.php:/mailcowauth/sessions.inc.php:z
     ports:
     - ${HTTPS_BIND:-}:${HTTPS_PORT:-443}:${HTTPS_PORT:-443}
     - ${HTTP_BIND:-}:${HTTP_PORT:-80}:${HTTP_PORT:-80}
@@ -498,11 +498,11 @@ services:
     - ACME_DNS_PROVIDER=${ACME_DNS_PROVIDER:-dns_xxx}
     - ACME_ACCOUNT_EMAIL=${ACME_ACCOUNT_EMAIL:-me@example.com}
     volumes:
-    - /home/mailcow/data/web/.well-known/acme-challenge:/var/www/acme:z
-    - /home/mailcow/data/assets/ssl:/var/lib/acme/:z
-    - /home/mailcow/data/assets/ssl-example:/var/lib/ssl-example/:ro,Z
+    - ${DATA_ROOT:-./data}/web/.well-known/acme-challenge:/var/www/acme:z
+    - ${DATA_ROOT:-./data}/assets/ssl:/var/lib/acme/:z
+    - ${DATA_ROOT:-./data}/assets/ssl-example:/var/lib/ssl-example/:ro,Z
     - mysql-socket-vol-1:/var/run/mysqld/:z
-    - /home/mailcow/data/conf/acme:/etc/acme/:z
+    - ${DATA_ROOT:-./data}/conf/acme:/etc/acme/:z
     restart: always
     networks:
       mailcow-network:
@@ -547,7 +547,7 @@ services:
     - rspamd-vol-1:/var/lib/rspamd
     - mysql-socket-vol-1:/var/run/mysqld/:z
     - postfix-vol-1:/var/spool/postfix
-    - /home/mailcow/data/assets/ssl:/etc/ssl/mail/:ro,z
+    - ${DATA_ROOT:-./data}/assets/ssl:/etc/ssl/mail/:ro,z
     restart: always
     depends_on:
     - postfix-mailcow

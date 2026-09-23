@@ -12,5 +12,6 @@
 backup/
 backups/
 data/
+media/
 .DS_Store
 Thumbs.db

@@ -44,11 +44,11 @@ The container has the timezone preconfigured to `Asia/Yekaterinburg`. Additional
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/crafty/logs` | Crafty application log files |
-| `/home/crafty/config` | Crafty controller configuration files |
-| `/home/crafty/import` | Import directory for existing Minecraft servers |
-| `/home/crafty/backups` | Automatic and manual server backups |
-| `/home/crafty/servers` | Minecraft server instance directories |
+| `${DATA_ROOT}/logs` | Crafty application log files |
+| `${DATA_ROOT}/config` | Crafty controller configuration files |
+| `${DATA_ROOT}/import` | Import directory for existing Minecraft servers |
+| `${DATA_ROOT}/backups` | Automatic and manual server backups |
+| `${DATA_ROOT}/servers` | Minecraft server instance directories |
 
 ---
 

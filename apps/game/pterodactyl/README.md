@@ -80,11 +80,11 @@ Inside `compose.yaml`, the default App URL is configured to:
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/pterodactyl/database` | MariaDB database storage directory |
-| `/home/pterodactyl/var/` | Persistent panel data storage (e.g. plugins, files) |
-| `/home/pterodactyl/nginx/` | Custom Nginx server configurations |
-| `/home/pterodactyl/certs/` | SSL certificates (such as Let's Encrypt certificates) |
-| `/home/pterodactyl/logs/` | Panel application error logs |
+| `${DATA_ROOT}/database` | MariaDB database storage directory |
+| `${DATA_ROOT}/var/` | Persistent panel data storage (e.g. plugins, files) |
+| `${DATA_ROOT}/nginx/` | Custom Nginx server configurations |
+| `${DATA_ROOT}/certs/` | SSL certificates (such as Let's Encrypt certificates) |
+| `${DATA_ROOT}/logs/` | Panel application error logs |
 
 ---
 

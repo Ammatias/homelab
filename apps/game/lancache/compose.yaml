@@ -20,8 +20,8 @@ services:
       - 80:80/tcp
       - 443:443/tcp
     volumes:
-      - /mnt/cache:/data/cache
-      - /home/lancache/logs:/data/logs
+      - ${DATA_ROOT:-./data}/cache:/data/cache
+      - ${DATA_ROOT:-./data}/logs:/data/logs
     security_opt:
       - no-new-privileges=true
     env_file: .env

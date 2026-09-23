@@ -12,8 +12,8 @@ services:
       - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/seerr:/config
-      - /mnt/media:/data
+      - ${DATA_ROOT:-./data}/seerr:/config
+      - ${MEDIA_ROOT:-./media}:/data
     security_opt:
       - no-new-privileges:true
     logging:
@@ -35,7 +35,7 @@ services:
       - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/prowlarr:/config
+      - ${DATA_ROOT:-./data}/prowlarr:/config
     security_opt:
       - no-new-privileges:true
     logging:
@@ -56,8 +56,8 @@ services:
       - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/radarr:/config
-      - /mnt/media:/data
+      - ${DATA_ROOT:-./data}/radarr:/config
+      - ${MEDIA_ROOT:-./media}:/data
     security_opt:
       - no-new-privileges:true
     logging:
@@ -78,8 +78,8 @@ services:
       - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/sonarr:/config
-      - /mnt/media:/data
+      - ${DATA_ROOT:-./data}/sonarr:/config
+      - ${MEDIA_ROOT:-./media}:/data
     security_opt:
       - no-new-privileges:true
     logging:
@@ -100,8 +100,8 @@ services:
       - TZ=${TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/lidarr:/config
-      - /mnt/media:/data
+      - ${DATA_ROOT:-./data}/lidarr:/config
+      - ${MEDIA_ROOT:-./media}:/data
     security_opt:
       - no-new-privileges:true
     logging:

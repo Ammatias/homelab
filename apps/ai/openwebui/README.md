@@ -58,7 +58,7 @@ WEBUI_URL=https://openwebui.example.com
 
 | Path     | Purpose |
 | -------- | ------- |
-| `/home/openwebui` | Application database, user uploads, chats, and configurations |
+| `${DATA_ROOT}` | Application database, user uploads, chats, and configurations |
 
 ---
 

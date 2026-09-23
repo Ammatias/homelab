@@ -9,10 +9,10 @@ services:
       - NODE_ENV=production
       - FORCE_COLOR=1
     volumes:
-      - /home/syllytavern/config:/home/node/app/config
-      - /home/syllytavern/data:/home/node/app/data
-      - /home/syllytavern/plugins:/home/node/app/plugins
-      - /home/syllytavern/extensions:/home/node/app/public/scripts/extensions/third-party
+      - ${DATA_ROOT:-./data}/config:/home/node/app/config
+      - ${DATA_ROOT:-./data}/data:/home/node/app/data
+      - ${DATA_ROOT:-./data}/plugins:/home/node/app/plugins
+      - ${DATA_ROOT:-./data}/extensions:/home/node/app/public/scripts/extensions/third-party
     security_opt:
       - no-new-privileges=true
     networks:

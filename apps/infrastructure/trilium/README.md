@@ -71,7 +71,7 @@ docker network create frontend
 
 | Path      | Purpose        |
 | --------- | -------------- |
-| /home/trilium | Notes and data |
+| ${DATA_ROOT} | Notes and data |
 
 ---
 
@@ -94,7 +94,7 @@ TRILIUM_NETWORK_TRUSTEDREVERSEPROXY=172.18.0.0/16
 
 ## 📌 Notes
 
-* Data is stored in `/home/trilium`
+* Data is stored in `${DATA_ROOT}`
 * First startup may take a few minutes
 * Change port if conflict occurs
 

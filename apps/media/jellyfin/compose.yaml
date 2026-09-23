@@ -7,9 +7,9 @@ services:
       - 8096:8096/tcp
       - 7359:7359/udp
     volumes:
-      - /home/jellyfin/config:/config
-      - /home/jellyfin/cache:/cache
-      - /mnt/media:/media
+      - ${DATA_ROOT:-./data}/config:/config
+      - ${DATA_ROOT:-./data}/cache:/cache
+      - ${MEDIA_ROOT:-./media}:/media
 #    deploy:
 #      resources:
 #        reservations:

@@ -57,12 +57,12 @@ TZ=UTC
 
 | Path             | Purpose           |
 | ---------------- | ----------------- |
-| `/home/seerr`    | Seerr config      |
-| `/home/prowlarr`  | Prowlarr config   |
-| `/home/radarr`    | Radarr config     |
-| `/home/sonarr`    | Sonarr config     |
-| `/home/lidarr`    | Lidarr config     |
-| `/mnt/media`      | Media storage     |
+| `${DATA_ROOT}/seerr`    | Seerr config      |
+| `${DATA_ROOT}/prowlarr`  | Prowlarr config   |
+| `${DATA_ROOT}/radarr`    | Radarr config     |
+| `${DATA_ROOT}/sonarr`    | Sonarr config     |
+| `${DATA_ROOT}/lidarr`    | Lidarr config     |
+| `${MEDIA_ROOT}`      | Media storage     |
 
 ---
 
@@ -103,7 +103,7 @@ Make sure they match your system.
 
 ## 📌 Notes
 
-* This setup uses host absolute paths (`/home/...` and `/mnt/...`) for persistent storage
+* `DATA_ROOT` and `MEDIA_ROOT` default to repository-relative directories and can be overridden with absolute host paths in Dockhand
 * `security_opt` is enabled (`no-new-privileges=true`)
 * `.env` is used consistently across all services to set common variables (PUID, PGID, TZ)
 

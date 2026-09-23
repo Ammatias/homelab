@@ -41,12 +41,12 @@ docker compose up -d
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/comfyui/data` | App configuration and general workspace data |
-| `/mnt/comfyui/input` | Host directory containing inputs for workflows |
-| `/mnt/comfyui/output`| Host directory containing generated images/outputs |
-| `/mnt/comfyui/models` | Directory for manually placing AI checkpoints/LoRAs |
-| `/home/comfyui/config` | Workspace settings and configurations |
-| `/home/comfyui/custom_nodes` | Custom node installations |
+| `${DATA_ROOT}` | App configuration and general workspace data |
+| `${DATA_ROOT}/input` | Host directory containing inputs for workflows |
+| `${DATA_ROOT}/output`| Host directory containing generated images/outputs |
+| `${DATA_ROOT}/models` | Directory for manually placing AI checkpoints/LoRAs |
+| `${DATA_ROOT}/config` | Workspace settings and configurations |
+| `${DATA_ROOT}/custom_nodes` | Custom node installations |
 
 ---
 

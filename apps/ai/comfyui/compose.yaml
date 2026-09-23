@@ -6,14 +6,14 @@ services:
     ports:
       - 8188:8188
     volumes:
-      - /home/comfy-data:/workspace/ComfyUI:rw
-      - /mnt/comfyui/output:/workspace/ComfyUI/output:rw
-      - /mnt/comfyui/input:/workspace/ComfyUI/input:rw
+      - ${DATA_ROOT:-./data}:/workspace/ComfyUI:rw
+      - ${DATA_ROOT:-./data}/output:/workspace/ComfyUI/output:rw
+      - ${DATA_ROOT:-./data}/input:/workspace/ComfyUI/input:rw
 #      
-      - /mnt/comfyui/models:/workspace/ComfyUI/models
+      - ${DATA_ROOT:-./data}/models:/workspace/ComfyUI/models
 #      
-      - /home/comfyui/config:/workspace/ComfyUI/config:rw
-      - /home/comfyui/custom_nodes:/workspace/ComfyUI/custom_nodes:rw
+      - ${DATA_ROOT:-./data}/config:/workspace/ComfyUI/config:rw
+      - ${DATA_ROOT:-./data}/custom_nodes:/workspace/ComfyUI/custom_nodes:rw
     ulimits:
       memlock: -1
     mem_limit: 16gb

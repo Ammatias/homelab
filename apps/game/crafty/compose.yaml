@@ -13,11 +13,11 @@ services:
     environment:
       - TZ=Asia/Yekanerinburg
     volumes:
-      - /home/crafty/logs:/crafty/logs
-      - /home/crafty/config:/crafty/app/config
-      - /home/crafty/import:/crafty/import
-      - /home/crafty/backups:/crafty/backups
-      - /home/crafty/servers:/crafty/servers
+      - ${DATA_ROOT:-./data}/logs:/crafty/logs
+      - ${DATA_ROOT:-./data}/config:/crafty/app/config
+      - ${DATA_ROOT:-./data}/import:/crafty/import
+      - ${DATA_ROOT:-./data}/backups:/crafty/backups
+      - ${DATA_ROOT:-./data}/servers:/crafty/servers
     networks:
       - frontend
 

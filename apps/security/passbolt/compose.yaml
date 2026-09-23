@@ -19,8 +19,8 @@ services:
       - EMAIL_TRANSPORT_DEFAULT_TLS=${EMAIL_TRANSPORT_DEFAULT_TLS}
       - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM}
     volumes:
-      - /home/passbolt/gpg:/etc/passbolt/gpg
-      - /home/passbolt/jwt:/etc/passbolt/jwt
+      - ${DATA_ROOT:-./data}/gpg:/etc/passbolt/gpg
+      - ${DATA_ROOT:-./data}/jwt:/etc/passbolt/jwt
     security_opt:
       - no-new-privileges=true
     env_file:

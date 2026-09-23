@@ -24,8 +24,8 @@ services:
       - AUTHENTIK_EMAIL__TIMEOUT=10
       - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
     volumes:
-      - /home/authentik/media:/media
-      - /home/authentik/custom-templates:/templates
+      - ${DATA_ROOT:-./data}/media:/media
+      - ${DATA_ROOT:-./data}/custom-templates:/templates
     security_opt:
       - no-new-privileges=true
     env_file:
@@ -58,9 +58,9 @@ services:
       - AUTHENTIK_EMAIL__FROM=${EMAIL_FROM}
     volumes:
       - /run/docker.sock:/run/docker.sock
-      - /home/authentik/media:/media
-      - /home/authentik/certs:/certs
-      - /home/authentik/custom-templates:/templates
+      - ${DATA_ROOT:-./data}/media:/media
+      - ${DATA_ROOT:-./data}/certs:/certs
+      - ${DATA_ROOT:-./data}/custom-templates:/templates
     security_opt:
       - no-new-privileges=true
     env_file:

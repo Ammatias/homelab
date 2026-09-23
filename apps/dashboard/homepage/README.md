@@ -88,9 +88,9 @@ docker network create frontend
 
 | Path                  | Purpose            |
 | --------------------- | ------------------ |
-| /home/homepage        | Main configuration |
-| /home/homepage/images | Custom images      |
-| /home/homepage/icons  | Custom icons       |
+| ./app        | Main configuration |
+| ${DATA_ROOT}/images | Custom images      |
+| ${DATA_ROOT}/icons  | Custom icons       |
 
 ---
 

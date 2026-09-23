@@ -86,8 +86,8 @@ docker network create backend
 
 | Path | Purpose |
 | ---- | ------- |
-| `/home/pgadmin/data` | persistent application database and settings |
-| `/home/pgadmin/config_local.py` | local configuration overrides (Python settings) |
+| `${DATA_ROOT}` | persistent application database and settings |
+| `` | local configuration overrides (Python settings) |
 
 ---
 
@@ -116,7 +116,7 @@ Use:
 
 * Make sure PostgreSQL is reachable from Docker network
 * Credentials are stored in `.env`
-* Data is persisted in `/home/pgadmin/data`
+* Data is persisted in `${DATA_ROOT}`
 
 ---
 

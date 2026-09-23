@@ -92,7 +92,7 @@ docker network create backend
 
 | Path   | Purpose      |
 | ------ | ------------ |
-| /home/grafana/data | Grafana data |
+| ${DATA_ROOT} | Grafana data |
 
 ---
 
@@ -116,7 +116,7 @@ Add data source manually:
 
 * Runs as root (`user: "0"`) to avoid permission issues
 * Change default credentials immediately
-* Data is persisted in `/home/grafana/data`
+* Data is persisted in `${DATA_ROOT}`
 
 ---
 

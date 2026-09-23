@@ -14,7 +14,7 @@ git clone https://github.com/Ammatias/homelab
 cd homelab/apps/ai/litellm
 ```
 
-2. Create a configuration file at `/home/litellm/config.yaml` (e.g., to proxy KoboldCpp or external APIs):
+2. Create a configuration file at `${LITELLM_CONFIG_FILE}` (e.g., to proxy KoboldCpp or external APIs):
 ```yaml
 model_list:
   - model_name: local-model
@@ -67,7 +67,7 @@ LITELLM_MASTER_KEY=sk-master-key-here
 
 | Path          | Purpose |
 | ------------- | ------- |
-| `/home/litellm/config.yaml` | LiteLLM routing configuration and model list |
+| `${LITELLM_CONFIG_FILE}` | LiteLLM routing configuration and model list |
 
 ---
 
