@@ -7,10 +7,10 @@ x-common:
     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
   panel:
     &panel-environment
-    APP_URL: "https://pterodactyl.domain.ru"
+    APP_URL: "https://pterodactyl.example.com"
     # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
     APP_TIMEZONE: "Asia/Yekaterinburg"
-    APP_SERVICE_AUTHOR: "system@domain.ru"
+    APP_SERVICE_AUTHOR: "system@example.com"
     # Uncomment the line below and set to a non-empty value if you want to use Let's Encrypt
     # to generate an SSL certificate for the Panel.
     # LE_EMAIL: ""

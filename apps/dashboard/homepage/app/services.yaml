@@ -1,66 +1,66 @@
 ---
 - Networking:         
     - Keenetic Giant:
-        href: https://you.domein.com
+        href: https://router.example.com
         icon: keenetic-alt.png
         description: router
-        siteMonitor: https://you.domein.com
+        siteMonitor: https://router.example.com
 
 
 - Infrastructure and Data:
     - Proxmox:
-        href: https://you.domein.com
+        href: https://proxmox.example.com
         icon: proxmox.png
         description: pmx-node-1
-        siteMonitor: https://you.domein.com
+        siteMonitor: https://proxmox.example.com
         widget:
             type: proxmox
-            url: https://you.domein.com
+            url: https://proxmox.example.com
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
 
 
 
 - Management:
-    - Dockge:
-        href: https://dockge.ammatias.synology.me:4443
+    - Dockhand:
+        href: https://dockhand.example.com
         icon: si-docker-#2496ED
-        description: dockge-1 on pmx-node-1     
+        description: container management
 
 
 - Monitoring:
     - Scrutiny:
-        href: https://you.domein.com
+        href: https://scrutiny.example.com
         icon: scrutiny.png
         description: scrutiny on synology-dsm
-        siteMonitor: https://you.domein.com
+        siteMonitor: https://scrutiny.example.com
         widget:
             type: scrutiny
-            url: https:https://you.domein.com
+            url: https://scrutiny.example.com
             
     - UptimeKuma:
-        href: https://you.domein.com
+        href: https://uptime.example.com
         description: uptimekuma-1 on pmx-node-1
         icon: uptime-kuma.png
         widget:
             type: uptimekuma
-            url: https://you.domein.com
+            url: https://uptime.example.com
             slug: publicservices
 
 
 
 - Security and Identity:
     - Authentik:
-        href: https://you.domein.com
+        href: https://authentik.example.com
         description: authentik-1 on pmx-node-1
         icon: authentik.png
         widget:
             type: authentik
-            url: https://you.domein.com
+            url: https://authentik.example.com
             key: {{HOMEPAGE_VAR_AUTHENTIK_KEY}}
 
     - Passbolt:
-        href: https://you.domein.com
+        href: https://passbolt.example.com
         description: passbolt-1 on pmx-node-1
         icon: passbolt.png
 
@@ -68,6 +68,6 @@
 
 - Automation:
     - Ansible Semaphore:
-        href: https://you.domein.com
+        href: https://semaphore.example.com
         description: ansiblesemaphore-1 on pmx-node-1
         icon: si-ansible-#EE0000

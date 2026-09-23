@@ -4,7 +4,7 @@ http:
       entryPoints:
         - web
         - websecure
-      rule: "Host(`traefik.domain.ru`)"
+      rule: "Host(`traefik.example.com`)"
       service: api@internal
       middlewares:
         - default-ipallowlist
@@ -17,7 +17,7 @@ http:
       entryPoints:
         - web
         - websecure
-      rule: "Host(`dash.traefik.domain.ru`)"
+      rule: "Host(`dash.traefik.example.com`)"
       service: noop@internal
       middlewares:
         - default-ipallowlist
@@ -31,7 +31,7 @@ http:
       entryPoints:
         - web
         - websecure
-      rule: "Host(`dockhand.domain.ru`)"
+      rule: "Host(`dockhand.example.com`)"
       middlewares:
         - default-headers
         - https-redirect

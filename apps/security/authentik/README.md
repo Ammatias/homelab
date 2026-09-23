@@ -62,9 +62,9 @@ openssl rand -base64 32
 ```env
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USERNAME=user@gmail.com
+EMAIL_USERNAME=user@example.com
 EMAIL_PASSWORD=app-specific-password
-EMAIL_FROM=user@gmail.com
+EMAIL_FROM=user@example.com
 EMAIL_USE_TLS=true
 EMAIL_USE_SSL=false
 ```

@@ -84,7 +84,7 @@ See full architecture in docs:
 
 * [Homepage](apps/dashboard/homepage/README.md) (dashboard)
 * [pgAdmin](apps/infrastructure/pgadmin/README.md) (database management)
-* [Trilium](apps/infrastructure/trillium/README.md) (notes / knowledge base)
+* [Trilium](apps/infrastructure/trilium/README.md) (notes / knowledge base)
 
 ---
 
@@ -92,7 +92,7 @@ See full architecture in docs:
 
 * External `frontend` network (public-facing proxy routing)
 * External `backend` network (internal service communication & databases)
-* Domain-based routing (`*.domain.ru`)
+* Domain-based routing (`*.example.com`)
 
 ---
 
@@ -110,8 +110,11 @@ See full architecture in docs:
 Each service:
 
 * Uses `.env.example` templates; real `.env` files are never published
-* Uses relative paths (`./`)
-* Is fully portable
+* Documents required networks, ports, storage, and placeholders in its README
+* Uses `compose.yaml` as the standard Compose filename
+* May contain illustrative host paths that must be reviewed before import
+
+Directory names use lowercase kebab-case. Service-specific environment templates live beside that service; there is no repository-wide production `.env`.
 
 ---
 
@@ -147,6 +150,8 @@ Each service:
 * Runtime state and secrets are intentionally excluded
 * Some services are experimental (AI stack)
 * Designed for learning and real usage
+
+The `Ammatias` pseudonym and project artwork are intentional public branding. Legal names, private contact information, working domains, internal addresses, and credentials are not part of the examples.
 
 ---
 

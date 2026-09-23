@@ -10,7 +10,7 @@ Self-hosted **note-taking and personal knowledge base**.
 
 ```bash
 git clone https://github.com/Ammatias/homelab
-cd homelab/apps/infrastructure/trillium
+cd homelab/apps/infrastructure/trilium
 cp .env.example .env
 docker compose up -d
 ```
@@ -34,10 +34,10 @@ Edit `.env`:
 TZ=Asia/Yekaterinburg
 
 # OAuth2 / Authentik settings
-TRILIUM_BASE_URL=https://trilium.domain.ru
+TRILIUM_BASE_URL=https://trilium.example.com
 TRILIUM_CLIENT_ID=your-authentik-client-id
 TRILIUM_CLIENT_SECRET=your-authentik-client-secret
-TRILIUM_ISSUER_BASE_URL=https://authentik.domain.ru/application/o/trilium/
+TRILIUM_ISSUER_BASE_URL=https://authentik.example.com/application/o/trilium/
 TRILIUM_ISSUER_NAME=Authentik
 ```
 

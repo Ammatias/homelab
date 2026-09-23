@@ -39,9 +39,9 @@ Edit `.env` (configured for Authentik OAuth integration out-of-the-box):
 ```env
 OAUTH_CLIENT_ID=your-authentik-client-id
 OAUTH_CLIENT_SECRET=your-authentik-client-secret
-OPENID_PROVIDER_URL=https://authentik.domain.ru/application/o/openwebui/
-OPENID_REDIRECT_URI=https://openwebui.domain.ru/oauth/openid/callback
-WEBUI_URL=https://openwebui.domain.ru
+OPENID_PROVIDER_URL=https://authentik.example.com/application/o/openwebui/
+OPENID_REDIRECT_URI=https://openwebui.example.com/oauth/openid/callback
+WEBUI_URL=https://openwebui.example.com
 ```
 
 ---

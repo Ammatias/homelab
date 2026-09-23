@@ -11,7 +11,7 @@ Self-hosted **media server and entertainment system** using Docker.
 1. Clone the repository and navigate to the service:
 ```bash
 git clone https://github.com/Ammatias/homelab
-cd homelab/apps/media/Jellyfin
+cd homelab/apps/media/jellyfin
 ```
 
 2. Run the container:

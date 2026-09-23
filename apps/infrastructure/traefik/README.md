@@ -32,9 +32,9 @@ This setup runs Traefik as a **systemd service**, not in Docker.
 
 | Service           | Domain                 |
 | ----------------- | ---------------------- |
-| Traefik Dashboard | traefik.domain.ru      |
-| Admin Dashboard   | dash.traefik.domain.ru |
-| Dockhand          | dockhand.domain.ru     |
+| Traefik Dashboard | traefik.example.com      |
+| Admin Dashboard   | dash.traefik.example.com |
+| Dockhand          | dockhand.example.com     |
 
 ---
 
@@ -42,7 +42,7 @@ This setup runs Traefik as a **systemd service**, not in Docker.
 
 * TLS 1.2+ enforced
 * Secure cipher suites
-* Wildcard certificate (`*.domain.ru`)
+* Wildcard certificate (`*.example.com`)
 
 ---
 
@@ -102,7 +102,7 @@ sudo systemctl start traefik
 
 Example routing (Dockhand):
 
-* Domain: `dockhand.domain.ru`
+* Domain: `dockhand.example.com`
 * Target: `http://ip:3000`
 
 ---
@@ -117,7 +117,7 @@ Example routing (Dockhand):
 
 ## 📌 Notes
 
-* Replace `domain.ru` with your domain
+* Replace `example.com` with your domain
 * Replace `ip` with your server IP or container name
 * Uses external DNS + certificate resolver
 

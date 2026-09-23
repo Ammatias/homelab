@@ -32,8 +32,8 @@ Edit `.env`:
 
 ```env
 USE_GENERIC_CACHE=true
-LANCACHE_IP=192.168.1.100       # IP address of the cache server on your LAN
-DNS_BIND_IP=192.168.1.100       # IP address of the DNS server to bind to
+LANCACHE_IP=192.0.2.10          # Replace with the cache server's LAN address
+DNS_BIND_IP=192.0.2.10          # Replace with the address to bind on the target host
 UPSTREAM_DNS=1.1.1.1            # Upstream DNS for forwarding non-cached queries
 CACHE_ROOT=/mnt/cache           # Absolute path to cache storage
 CACHE_DISK_SIZE=2000g           # Maximum disk cache size

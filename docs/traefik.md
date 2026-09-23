@@ -25,7 +25,7 @@ Reverse proxy used as the **central entry point**.
 Requests are routed based on domain:
 
 ```
-https://service.domain.ru → service container
+https://service.example.com → service container
 ```
 
 ---

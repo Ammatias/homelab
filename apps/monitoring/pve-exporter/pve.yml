@@ -1,5 +1,5 @@
 default:
-    user: root@pam
-    token_name: "monitoring"
-    token_value: "key"
-    verify_ssl: false
+    user: monitoring@pve
+    token_name: "replace-with-token-id"
+    token_value: "replace-with-token-secret"
+    verify_ssl: true

@@ -25,7 +25,7 @@ docker compose up -d
 
 ## ⚙️ Configuration
 
-Wings relies heavily on the `config.yml` provided by the Pterodactyl Panel. The container is configured with the following defaults in `docker-compose.yaml`:
+Wings relies heavily on the `config.yml` provided by the Pterodactyl Panel. The container is configured with the following defaults in `compose.yaml`:
 * `TZ=Asia/Yekaterinburg`
 * `WINGS_UID=988`
 * `WINGS_GID=988`

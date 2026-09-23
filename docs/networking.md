@@ -36,7 +36,7 @@ This setup uses Docker networks to isolate and connect services.
 
 Routing is handled by Traefik using domain names:
 
-* `service.domain.ru`
+* `service.example.com`
 
 ---
 

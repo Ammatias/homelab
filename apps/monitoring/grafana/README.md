@@ -43,7 +43,7 @@ Edit `.env` file:
 ```env
 GF_SECURITY_ADMIN_USER=admin
 GF_SECURITY_ADMIN_PASSWORD=secure-admin-password
-ROOT_URL=https://grafana.domain.com
+ROOT_URL=https://grafana.example.com
 ```
 
 ### Optional (Authentik OAuth2)
@@ -55,10 +55,10 @@ OAUTH_ENABLED=true
 OAUTH_NAME=authentik
 OAUTH_CLIENT_ID=your-client-id
 OAUTH_CLIENT_SECRET=your-client-secret
-OAUTH_AUTH_URL=https://authentik.domain.ru/application/o/authorize/
-OAUTH_TOKEN_URL=https://authentik.domain.ru/application/o/token/
-OAUTH_API_URL=https://authentik.domain.ru/application/o/userinfo/
-SIGNOUT_REDIRECT_URL=https://authentik.domain.ru/application/o/grafana/end-session/
+OAUTH_AUTH_URL=https://authentik.example.com/application/o/authorize/
+OAUTH_TOKEN_URL=https://authentik.example.com/application/o/token/
+OAUTH_API_URL=https://authentik.example.com/application/o/userinfo/
+SIGNOUT_REDIRECT_URL=https://authentik.example.com/application/o/grafana/end-session/
 ```
 
 ---

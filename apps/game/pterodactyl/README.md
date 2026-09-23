@@ -53,7 +53,7 @@ MYSQL_ROOT_PASSWORD=your_root_password
 MYSQL_DATABASE=panel
 MYSQL_USER=pterodactyl
 
-MAIL_FROM=system@domain.ru
+MAIL_FROM=system@example.com
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.example.com
 MAIL_PORT=587
@@ -62,8 +62,8 @@ MAIL_PASSWORD=smtp_password
 MAIL_ENCRYPTION=true
 ```
 
-Inside `docker-compose.yaml`, the default App URL is configured to:
-`APP_URL: "https://pterodactyl.domain.ru"`
+Inside `compose.yaml`, the default App URL is configured to:
+`APP_URL: "https://pterodactyl.example.com"`
 
 ---
 
@@ -90,7 +90,7 @@ Inside `docker-compose.yaml`, the default App URL is configured to:
 
 ## 📌 Usage
 
-1. Once the services are fully started and initial setup commands have completed, access the panel via `https://pterodactyl.domain.ru` (or via the server's IP address if routing locally).
+1. Once the services are fully started and initial setup commands have completed, access the panel via `https://pterodactyl.example.com` (or via the server's IP address if routing locally).
 2. Log in using the administrator account you created during setup.
 3. In the admin settings, configure a location, then create a new Node to connect to the Wings daemon.
 

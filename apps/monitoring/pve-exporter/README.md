@@ -1,120 +1,35 @@
-# 📊 Prometheus (Docker Setup)
+# Prometheus PVE Exporter
 
-Self-hosted **monitoring and metrics collection system**.
+Prometheus exporter for Proxmox VE metrics.
 
-> Powerful, flexible and widely used in modern infrastructure.
+## Requirements
 
----
+- a dedicated, least-privilege Proxmox VE API user and token;
+- an existing Docker network named `backend`;
+- network access from the exporter to the Proxmox VE API;
+- Dockhand connected to the target Docker host through Hawser.
 
-## 🚀 Quick Start
+## Configuration
 
-```bash
-git clone https://github.com/Ammatias/homelab
-cd homelab/apps/monitoring/prometheus
-docker compose up -d
-```
+Copy `pve.yml` to a private working location and replace the example user, token name, and token value. Keep TLS verification enabled and install the correct CA certificate when the Proxmox API uses a private CA.
 
----
+The committed file contains placeholders only. Never commit a real API token.
 
-## 🌐 Access
+## Deployment
 
-* http://localhost:9090
+Review `compose.yaml`, then import it into Dockhand. Store the populated configuration outside the public repository and set `PVE_EXPORTER_CONFIG` to its host path. Save the Compose source in Dockhand without restarting, deploy it separately, and compare the retained source with the Hawser working copy.
 
----
+The exporter listens on port `9221`. Limit exposure to the monitoring network whenever a published host port is unnecessary.
 
-## ⚙️ Configuration
+## Validation
 
-Prometheus uses config file:
+- confirm the container remains running without restart loops;
+- request the exporter metrics endpoint from Prometheus;
+- confirm expected Proxmox targets are up;
+- verify logs contain no authentication or certificate errors.
 
-```bash
-./config/prometheus.yml
-```
+## Updates and rollback
 
----
+Record the working image version before an update. Test a new version in Dockhand and roll back to the previous tag or digest if collection fails. Back up the private configuration separately; it contains credentials.
 
-### Example Config
-
-```yaml id="w5wh1d"
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-  - job_name: "prometheus"
-    static_configs:
-      - targets: ["localhost:9090"]
-```
-
----
-
-## 📦 Included Services
-
-* Prometheus server
-
----
-
-## ⚠️ Network
-
-This setup uses an external Docker network:
-
-```bash id="0lsy2u"
-docker network create backend
-```
-
----
-
-## 🔌 Ports
-
-| Port | Description |
-| ---- | ----------- |
-| 9090 | Web UI      |
-
----
-
-## 📁 Volumes
-
-| Path | Purpose |
-| ---- | ------- |
-| `/home/prometheus/config/prometheus.yml` | Main configuration file |
-| `/home/prometheus/data` | Metrics time-series data directory |
-
----
-
-## 🛠 Requirements
-
-* Docker
-* Docker Compose
-
----
-
-## 📌 Notes
-
-* Make sure `prometheus.yml` exists at `/home/prometheus/config/prometheus.yml` before starting
-* Data is stored locally in `/home/prometheus/data`
-* Default config only monitors Prometheus itself
-
----
-
-## ⚠️ Storage
-
-Prometheus stores time-series data locally.
-
-To limit disk usage, add:
-
-```yaml id="5t3sz3"
-command:
-  - "--storage.tsdb.retention.time=7d"
-```
-
----
-
-## 🚧 Improvements
-
-* Add Node Exporter (system metrics)
-* Add Grafana (visualization)
-* Monitor Docker containers
-
----
-
-## 📚 Resources
-
-* https://prometheus.io/docs/introduction/overview/
+Upstream: <https://github.com/prometheus-pve/prometheus-pve-exporter>

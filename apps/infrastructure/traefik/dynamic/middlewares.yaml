@@ -45,7 +45,7 @@ http:
       ipAllowList:
         sourceRange:
           - "127.0.0.1/32"
-          - "192.168.0.1/24"
+          - "192.0.2.0/24"
 #
     traefik_plugin_AdminAPI_WebUI:
       plugin:
