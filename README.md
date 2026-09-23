@@ -40,6 +40,9 @@ See full architecture in docs:
 * [Traefik](apps/infrastructure/traefik/README.md) (reverse proxy, system service)
 * [Dockhand](apps/infrastructure/dockhand/README.md) (container management UI)
 * [Hawser](apps/infrastructure/hawser/README.md) (Docker remote API proxy)
+* Email
+  * [Mailcow](apps/infrastructure/email/mailcow/README.md) (mail server stack)
+  * [Bulwark Webmail](apps/infrastructure/email/bulwark/README.md) (webmail and Mailcow bridge)
 
 ---
 
@@ -82,13 +85,6 @@ See full architecture in docs:
 * [Homepage](apps/dashboard/homepage/README.md) (dashboard)
 * [pgAdmin](apps/infrastructure/pgadmin/README.md) (database management)
 * [Trilium](apps/infrastructure/trillium/README.md) (notes / knowledge base)
-
----
-
-### ✉️ Communication
-
-* [Mailcow](apps/communication/mailcow/README.md) (mail server stack)
-* [Bulwark Webmail](apps/communication/bulwark/README.md) (webmail and Mailcow bridge)
 
 ---
 
