@@ -24,6 +24,17 @@ jobs:
             exit 1
           fi
 
+      - name: Require pinned container images
+        shell: bash
+        run: |
+          unpinned="$(grep -RHE '^[[:space:]]*image:[[:space:]]*[^#[:space:]]+' apps --include compose.yaml \
+            | grep -Ev '@sha256:[0-9a-f]{64}[[:space:]]*$' || true)"
+          if [[ -n "$unpinned" ]]; then
+            echo 'Every image reference must be pinned to an immutable sha256 digest:' >&2
+            echo "$unpinned" >&2
+            exit 1
+          fi
+
       - name: Validate Compose files
         shell: bash
         run: |

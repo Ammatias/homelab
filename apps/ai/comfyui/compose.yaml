@@ -1,28 +1,23 @@
 services:
   comfyui:
-    image: comfyanonymous/comfyui:latest
+    image: ghcr.io/lecode-official/comfyui-docker:latest@sha256:e27739fc19d577d694ea99846a6c602e06dac963bebb2f056e22d97d19c392dd
     container_name: comfyui
     restart: unless-stopped
     ports:
       - 8188:8188
+    environment:
+      USER_ID: ${USER_ID:-1000}
+      GROUP_ID: ${GROUP_ID:-1000}
     volumes:
-      - ${DATA_ROOT:-./data}:/workspace/ComfyUI:rw
-      - ${DATA_ROOT:-./data}/output:/workspace/ComfyUI/output:rw
-      - ${DATA_ROOT:-./data}/input:/workspace/ComfyUI/input:rw
-#      
-      - ${DATA_ROOT:-./data}/models:/workspace/ComfyUI/models
-#      
-      - ${DATA_ROOT:-./data}/config:/workspace/ComfyUI/config:rw
-      - ${DATA_ROOT:-./data}/custom_nodes:/workspace/ComfyUI/custom_nodes:rw
-    ulimits:
-      memlock: -1
-    mem_limit: 16gb
+      - ${DATA_ROOT:-./data}/models:/opt/comfyui/models:rw
+      - ${DATA_ROOT:-./data}/custom-nodes:/opt/comfyui/custom_nodes:rw
+      - ${DATA_ROOT:-./data}/output:/opt/comfyui/output:rw
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities: [gpu]
     networks:
       - frontend

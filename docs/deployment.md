@@ -28,6 +28,10 @@ Portable examples use `${DATA_ROOT:-./data}` for service state and `${MEDIA_ROOT
 
 System mounts such as the Docker socket, `/lib/modules`, `/etc/localtime`, and Docker container logs remain explicit when the application requires host integration. Review each of these mounts before deployment because they grant capabilities beyond ordinary application storage.
 
+## Container images
+
+Every Compose `image:` reference keeps a readable tag and is pinned to an immutable `sha256` digest. Treat a digest update as a dependency change: review the upstream release, update the tag when appropriate, resolve the new registry digest, and let CI validate every Compose file before deployment. Do not remove the digest merely to follow a moving `latest`, `main`, or major-version tag.
+
 ## Networks
 
 Most examples expect external `frontend` and/or `backend` networks. Create and manage them explicitly for the target environment before deploying dependent stacks.

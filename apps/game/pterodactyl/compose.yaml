@@ -33,7 +33,7 @@ x-common:
 #
 services:
   database:
-    image: mariadb:11
+    image: mariadb:11@sha256:79d59758afc91b89b120b0a8904d637f5a3b3e1c4900f29b740d6d46c72fef68
     restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
     volumes:
@@ -45,12 +45,12 @@ services:
     networks:
       - "backend"
   cache:
-    image: redis:alpine
+    image: redis:alpine@sha256:ba6e394f6acc2a695ef1b6944f161b9ca813711739be68319fa0db3470673f1d
     restart: unless-stopped
     networks:
       - "backend"
   panel:
-    image: ghcr.io/pterodactyl/panel:latest
+    image: ghcr.io/pterodactyl/panel:latest@sha256:e27a06cfcd078691ddf9805ae0dee2ee529b35ce18e427ef970de4d503602f2c
     restart: unless-stopped
     ports:
       - "80:80"

@@ -1,7 +1,7 @@
 services:
   seerr:
     container_name: seerr
-    image: ghcr.io/hotio/seerr:latest
+    image: ghcr.io/hotio/seerr:latest@sha256:0b3935e54f85d12d2dd8573bbf9fc64c60d773899ce164a84abd3e1c9d2e6f74
     restart: unless-stopped
     ports:
       - 5055:5055
@@ -24,7 +24,7 @@ services:
 
   prowlarr:
     container_name: prowlarr
-    image: ghcr.io/hotio/prowlarr:latest
+    image: ghcr.io/hotio/prowlarr:latest@sha256:5873db55728369968a9e757a095c02c228de9bf22dc83c0d39a35e9e00124348
     restart: unless-stopped
     ports:
       - 9696:9696
@@ -45,7 +45,7 @@ services:
 
   radarr:
     container_name: radarr
-    image: ghcr.io/hotio/radarr:latest
+    image: ghcr.io/hotio/radarr:latest@sha256:316b1b95123024815642ad4b274e8ed03f22857cbe807713f6161dc18733a9c1
     restart: unless-stopped
     ports:
       - 7878:7878
@@ -67,7 +67,7 @@ services:
 
   sonarr:
     container_name: sonarr
-    image: ghcr.io/hotio/sonarr:latest
+    image: ghcr.io/hotio/sonarr:latest@sha256:90c6edf86bafdb92344ad9fce0dc6098e9ddcc7e263e10787eb63b93951029f1
     restart: unless-stopped
     ports:
      - 8989:8989
@@ -89,7 +89,7 @@ services:
 
   lidarr:
     container_name: lidarr
-    image: ghcr.io/hotio/lidarr:latest
+    image: ghcr.io/hotio/lidarr:latest@sha256:ef6526aa8b53362b152c29bc5817af38af2b1d2993d2b36ec8c7c1462dd6370a
     restart: unless-stopped
     ports:
       - 8686:8686

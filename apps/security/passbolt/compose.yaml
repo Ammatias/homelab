@@ -1,7 +1,7 @@
 ---
 services:
   passbolt:
-    image: passbolt/passbolt:latest-ce
+    image: passbolt/passbolt:latest-ce@sha256:1768916a04b10a3ade0d2162b00febe602fd7d32cda3808391529600787c67bd
     container_name: passbolt
     restart: unless-stopped
     ports:

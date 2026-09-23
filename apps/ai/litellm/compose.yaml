@@ -1,6 +1,6 @@
 services:
   litellm:
-    image: ghcr.io/berriai/litellm:latest
+    image: ghcr.io/berriai/litellm:latest@sha256:87f34979b9f8cb274fac90ca8a4fdda07d8480de22755562a26adeb95ce20d02
     container_name: litellm
     restart: unless-stopped
     ports:

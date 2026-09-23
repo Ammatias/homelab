@@ -1,6 +1,6 @@
 services:
   lancache_dns:
-    image: lancachenet/lancache-dns:latest
+    image: lancachenet/lancache-dns:latest@sha256:cec61382a3b4b8ef6dfc4ff44eefd4028ea48662ff5930097bb366b69e22296c
     container_name: lancache_dns
     restart: unless-stopped
     ports:
@@ -13,7 +13,7 @@ services:
       - backend
 
   monolithic:
-    image: lancachenet/monolithic:latest
+    image: lancachenet/monolithic:latest@sha256:37f28b362c939a333f3e4f12aa8ca80604cf75050b2f190d0ad972b2fedce00e
     container_name: lancache_monolithic
     restart: unless-stopped
     ports:

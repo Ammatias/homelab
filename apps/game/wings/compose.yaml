@@ -1,6 +1,6 @@
 services:
   wings:
-    image: ghcr.io/pterodactyl/wings:latest
+    image: ghcr.io/pterodactyl/wings:latest@sha256:97937976fdb0ea0ac78797d8c86311ef80937f23f186a75a6903aff4540487d1
     container_name: wings
     restart: unless-stopped
     ports:

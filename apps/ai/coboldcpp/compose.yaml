@@ -1,6 +1,6 @@
 services:
   koboldcpp:
-    image: noneabove1182/koboldcpp-gpu:latest
+    image: noneabove1182/koboldcpp-gpu:latest@sha256:19fca55989b184ff4f1a9ef9cec2eb99a9b5ac00dbf6325dc4eb47e87104aa50
     container_name: koboldcpp
     restart: unless-stopped
     ports:

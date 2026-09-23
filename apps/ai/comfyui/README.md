@@ -2,13 +2,7 @@
 
 Self-hosted **node-based AI image generation tool**.
 
-> ⚠️ Experimental setup — not fully tested.
-
----
-
-## 🚧 Status
-
-This setup is currently **experimental** and may require adjustments.
+The example uses the public `lecode-official/comfyui-docker` image and follows its documented container paths.
 
 ---
 
@@ -41,12 +35,9 @@ docker compose up -d
 
 | Path | Purpose |
 | ---- | ------- |
-| `${DATA_ROOT}` | App configuration and general workspace data |
-| `${DATA_ROOT}/input` | Host directory containing inputs for workflows |
 | `${DATA_ROOT}/output`| Host directory containing generated images/outputs |
 | `${DATA_ROOT}/models` | Directory for manually placing AI checkpoints/LoRAs |
-| `${DATA_ROOT}/config` | Workspace settings and configurations |
-| `${DATA_ROOT}/custom_nodes` | Custom node installations |
+| `${DATA_ROOT}/custom-nodes` | Custom node installations |
 
 ---
 
@@ -78,19 +69,18 @@ models/
 ## 📌 Notes
 
 * This setup assumes external model storage
-* Paths may need to be adjusted for your system
-* Not fully tested yet
+* `USER_ID` and `GROUP_ID` default to `1000`; adjust them to the account that owns the host directories.
+* Review GPU allocation before deployment.
 
 ---
 
 ## 🚧 Improvements
 
-* Simplify volume structure
-* Add minimal working example
 * Add model management guide
 
 ---
 
 ## 📚 Resources
 
-* https://github.com/comfyanonymous/ComfyUI
+* https://github.com/Comfy-Org/ComfyUI
+* https://github.com/lecode-official/comfyui-docker

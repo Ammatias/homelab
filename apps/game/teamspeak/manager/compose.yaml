@@ -1,6 +1,6 @@
 services:
   backend:
-    image: clusterzx/ts6-manager:backend
+    image: clusterzx/ts6-manager:backend@sha256:632cdbb3100496374936192c5575e72e2783d385561820e7baac426e2f8009da
     container_name: ts6-manager-backend
     restart: unless-stopped
     environment:
@@ -44,7 +44,7 @@ services:
         max-file: "3"
 
   bgutil-provider:
-    image: brainicism/bgutil-ytdlp-pot-provider:1.3.2
+    image: brainicism/bgutil-ytdlp-pot-provider:1.3.2@sha256:9a96e6385ce1928da87dea07b1cab0413d2cf8c07a3b8a8bd419f53df2c3843c
     container_name: ts6-manager-bgutil-provider
     restart: unless-stopped
     init: true
@@ -58,7 +58,7 @@ services:
         max-file: "3"
 
   sidecar:
-    image: clusterzx/ts6-manager:sidecar
+    image: clusterzx/ts6-manager:sidecar@sha256:49ef528a1ccf03fe5793aa913206fcd0210bac519e5eab10710aa020564d26fe
     container_name: ts6-manager-sidecar
     restart: unless-stopped
     environment:
@@ -73,7 +73,7 @@ services:
         max-file: "3"
 
   request-music-controller:
-    image: node:20-alpine
+    image: node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
     container_name: ts6-manager-request-music-controller
     restart: unless-stopped
     command: ["node", "/app/controller.mjs"]
@@ -103,7 +103,7 @@ services:
         max-file: "3"
 
   frontend:
-    image: clusterzx/ts6-manager:frontend
+    image: clusterzx/ts6-manager:frontend@sha256:4c43304a86a472241e0482179330a307a10119d781fda0204c848d37861d6197
     container_name: ts6-manager-frontend
     restart: unless-stopped
     ports:

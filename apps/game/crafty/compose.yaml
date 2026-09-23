@@ -1,7 +1,7 @@
 services:
   crafty:
     container_name: crafty
-    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest@sha256:7b6e87514259549647e15ceeaf73d238792e6d77e2c79fc744d5badc8d6e997c
     restart: unless-stopped
     ports:
       - "5520-5550:5520-5550/udp" # Hytale
