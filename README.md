@@ -85,6 +85,13 @@ See full architecture in docs:
 
 ---
 
+### ✉️ Communication
+
+* [Mailcow](apps/communication/mailcow/README.md) (mail server stack)
+* [Bulwark Webmail](apps/communication/bulwark/README.md) (webmail and Mailcow bridge)
+
+---
+
 ## 🌐 Networking
 
 * External `frontend` network (public-facing proxy routing)

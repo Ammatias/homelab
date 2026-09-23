@@ -1,0 +1,49 @@
+services:
+  webmail:
+    image: ghcr.io/bulwarkmail/webmail@sha256:0e8d1339277033b6569a76c6f8192396e6edd66fd917d64d9ed505e8b81dac6d
+    restart: unless-stopped
+    ports:
+      - "${WEBMAIL_BIND:-127.0.0.1}:${WEBMAIL_PORT:-8083}:3000"
+    environment:
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      TZ: ${TZ}
+      APP_NAME: ${APP_NAME:-Webmail}
+      LOGIN_COMPANY_NAME: ${LOGIN_COMPANY_NAME:-Webmail}
+      LOGIN_WEBSITE_URL: ${PUBLIC_URL}
+      JMAP_SERVER_URL: ${PUBLIC_URL}
+      STALWART_FEATURES: "false"
+      STALWART_ADMIN_ACCESS: "off"
+      SESSION_SECRET: ${SESSION_SECRET}
+      SETTINGS_SYNC_ENABLED: "true"
+      COOKIE_SECURE: "true"
+      BULWARK_TELEMETRY: "off"
+    volumes:
+      - ./data/settings:/app/data/settings
+      - ./data/admin:/app/data/admin
+      - ./data/admin-state:/app/data/admin-state
+      - ./data/telemetry:/app/data/telemetry
+    healthcheck:
+      test: [CMD, wget, --no-verbose, --tries=1, --spider, http://127.0.0.1:3000/api/health]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  legacy-proxy:
+    image: ghcr.io/bulwarkmail/legacy-proxy@sha256:b654889024e116c3d24110179d98dfa299fa305bb2a9d1b866a0538235b807fd
+    restart: unless-stopped
+    ports:
+      - "${PROXY_BIND:-127.0.0.1}:${PROXY_PORT:-8084}:8080"
+    environment:
+      PORT: "8080"
+      DATA_DIR: /data
+      PUBLIC_URL: ${PUBLIC_URL}
+      DEFAULT_PROVIDER: mailcow
+      PROVIDERS_FILE: /etc/legacy-proxy/providers.json
+      VAULT_KEY: ${VAULT_KEY}
+      SESSION_HMAC_KEY: ${SESSION_HMAC_KEY}
+      LOG_LEVEL: info
+    volumes:
+      - ./data/proxy:/data
+      - ./providers.example.json:/etc/legacy-proxy/providers.json:ro
