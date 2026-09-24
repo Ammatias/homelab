@@ -15,6 +15,8 @@ services:
       JWT_REFRESH_EXPIRY: 7d
       FRONTEND_URL: ${FRONTEND_URL}
       MUSIC_DIR: /data/music
+      RADIO_BOT_ID: ${RADIO_BOT_ID:-3}
+      VIDEO_BOT_ID: ${VIDEO_BOT_ID:-6}
       SIDECAR_URL: http://sidecar:9800
     volumes:
       - ${TS6_MANAGER_DATA_DIR:-./data}/backend-data:/app/packages/backend/data
@@ -24,6 +26,8 @@ services:
       - ${TS6_MANAGER_DATA_DIR:-./data}/yt-dlp-plugins:/root/.config/yt-dlp/plugins:ro
       - ${TS6_MANAGER_DATA_DIR:-./data}/yt-dlp-config:/root/.config/yt-dlp/config:ro
       - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/ts6-url-validator.js:/app/packages/backend/dist/utils/url-validator.js:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/music-command-handler.js:/app/packages/backend/dist/voice/music-command-handler.js:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/clients.routes.js:/app/packages/backend/dist/routes/clients.routes.js:ro
     security_opt:
       - no-new-privileges=true
     sysctls:
@@ -80,11 +84,15 @@ services:
     environment:
       MANAGER_BACKEND_URL: http://backend:3001
       REQUEST_BOT_ID: ${REQUEST_BOT_ID:-2}
-      VERIFIED_GROUP_ID: ${VERIFIED_GROUP_ID:-10}
+      RADIO_BOT_ID: ${RADIO_BOT_ID:-3}
+      VIDEO_BOT_ID: ${VIDEO_BOT_ID:-6}
+      VERIFIED_GROUP_ID: ${VERIFIED_GROUP_ID:-12}
       PUBLIC_TEAMSPEAK_HOST: ${PUBLIC_TEAMSPEAK_HOST}
       MANAGER_USER_ID: ${MANAGER_USER_ID:-1}
       MANAGER_USERNAME: ${MANAGER_USERNAME:-controller}
       ALLOWED_CHANNEL_IDS: ${ALLOWED_CHANNEL_IDS}
+      VIDEO_CHANNEL_IDS: ${VIDEO_CHANNEL_IDS:-}
+      RADIO_CHANNEL_IDS: ${RADIO_CHANNEL_IDS:-}
       JWT_SECRET: ${JWT_SECRET}
     volumes:
       - ${TS6_MANAGER_DATA_DIR:-./data}/request-bot/request-music-controller.mjs:/app/controller.mjs:ro
@@ -108,6 +116,10 @@ services:
     restart: unless-stopped
     ports:
       - 3000:80
+    volumes:
+      - ${TS6_MANAGER_DATA_DIR:-./data}/frontend-overrides/Clients-DwfX9iat.js:/usr/share/nginx/html/assets/Clients-DwfX9iat.js:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/frontend-overrides/use-clients-on4dZ9L5.js:/usr/share/nginx/html/assets/use-clients-on4dZ9L5.js:ro
+      - ${TS6_MANAGER_DATA_DIR:-./data}/frontend-overrides/default.conf:/etc/nginx/conf.d/default.conf:ro
     security_opt:
       - no-new-privileges=true
     depends_on:

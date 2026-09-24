@@ -29,7 +29,10 @@ teamspeak/
 ├── manager/
 │   ├── compose.yaml
 │   ├── request-music-controller.mjs
-│   └── ts6-url-validator.js
+│   ├── ts6-url-validator.js
+│   ├── music-command-handler.js
+│   ├── clients.routes.js
+│   └── frontend-overrides/
 ├── assets/
 ├── tools/prepare_ts_icons.py
 └── .env.example
@@ -50,7 +53,7 @@ teamspeak/
 2. Create a Dockhand environment for the target Hawser node.
 3. Create the `teamspeak` stack from `server/compose.yaml` and its private environment values.
 4. Create the `ts6-manager` stack from `manager/compose.yaml` and the same private environment source.
-5. Place `request-music-controller.mjs` and `ts6-url-validator.js` in `${TS6_MANAGER_DATA_DIR}/request-bot/` on the target node before deploying the manager stack.
+5. Place the four controller/backend override files from `manager/` in `${TS6_MANAGER_DATA_DIR}/request-bot/`, and copy `manager/frontend-overrides/` to `${TS6_MANAGER_DATA_DIR}/frontend-overrides/` before deploying the manager stack.
 6. Confirm in Dockhand that both stacks are running and that every manager component joined `frontend`.
 
 Do not run Compose directly on the target host when Dockhand owns the stack. Dockhand should remain the source of truth for `compose.yaml` and `.env`; `/home/teamspeak` should contain only persistent container data and mounted helper files.

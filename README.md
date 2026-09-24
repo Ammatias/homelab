@@ -43,7 +43,9 @@ See full architecture in docs:
 * Email
   * [Mailcow](apps/infrastructure/email/mailcow/README.md) (mail server stack)
   * [Bulwark Webmail](apps/infrastructure/email/bulwark/README.md) (webmail and Mailcow bridge)
-  * [MTA-STS](apps/infrastructure/email/mta-sts/README.md) (SMTP transport security policy)
+* [MTA-STS](apps/infrastructure/email/mta-sts/README.md) (SMTP transport security policy)
+* [Trilium sync server](apps/infrastructure/trilium-server/README.md) (separate synchronization/server instance)
+* [wg-easy](apps/infrastructure/wg-easy/README.md) (WireGuard management)
 
 ---
 
@@ -52,6 +54,7 @@ See full architecture in docs:
 * [Prometheus](apps/monitoring/prometheus/README.md) (metrics)
 * [Grafana](apps/monitoring/grafana/README.md) (dashboards)
 * [pve-exporter](apps/monitoring/pve-exporter/README.md) (Proxmox VE metrics for Prometheus and Grafana)
+* [ProxCenter](apps/monitoring/proxcenter/README.md) (Proxmox management dashboard)
 
 ---
 
@@ -68,6 +71,7 @@ See full architecture in docs:
 * [Wings](apps/game/wings/README.md) (Pterodactyl node daemon)
 * [Crafty Controller](apps/game/crafty/README.md) (Minecraft server manager)
 * [TeamSpeak 6](apps/game/teamspeak/README.md) (voice server, TS6 Manager, music bots)
+* [GML Launcher](apps/game/gml/README.md) (game launcher platform)
 
 ---
 

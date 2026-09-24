@@ -1,0 +1,18 @@
+http:
+  routers:
+    mailcow:
+      entryPoints: [websecure]
+      rule: "Host(`mail.example.com`)"
+      tls:
+        certResolver: selectelv2
+        domains:
+          - main: smtp.example.com
+            sans:
+              - mail.example.com
+      service: mailcow
+  services:
+    mailcow:
+      loadBalancer:
+        servers:
+          - url: "http://192.0.2.126:80"
+        passHostHeader: true

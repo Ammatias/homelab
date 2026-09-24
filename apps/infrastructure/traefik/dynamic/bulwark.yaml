@@ -1,0 +1,27 @@
+http:
+  routers:
+    bulwark:
+      entryPoints: [websecure]
+      rule: "Host(`email.example.com`)"
+      priority: 10
+      tls:
+        certResolver: selectelv2
+      service: bulwark
+    bulwark-jmap:
+      entryPoints: [websecure]
+      rule: "Host(`email.example.com`) && (PathPrefix(`/jmap`) || Path(`/.well-known/jmap`))"
+      priority: 100
+      tls:
+        certResolver: selectelv2
+      service: bulwark-jmap
+  services:
+    bulwark:
+      loadBalancer:
+        servers:
+          - url: "http://192.0.2.126:8083"
+        passHostHeader: true
+    bulwark-jmap:
+      loadBalancer:
+        servers:
+          - url: "http://192.0.2.126:8084"
+        passHostHeader: true

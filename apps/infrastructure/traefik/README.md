@@ -54,6 +54,8 @@ traefik/
 ├── dynamic/
 │   ├── routers.yaml
 │   ├── middlewares.yaml
+│   ├── bulwark.yaml
+│   ├── mail.yaml
 │   └── tls.yaml
 ```
 
@@ -120,6 +122,8 @@ Example routing (Dockhand):
 * Replace `example.com` with your domain
 * Replace `ip` with your server IP or container name
 * Uses external DNS + certificate resolver
+* `bulwark.yaml` separates webmail and higher-priority JMAP paths
+* `mail.yaml` keeps the Mailcow web hostname separate from the SMTP certificate name
 
 ---
 

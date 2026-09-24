@@ -1,0 +1,37 @@
+services:
+  proxcenter:
+    image: ghcr.io/adminsyspro/proxcenter-frontend:latest@sha256:d6011f9efff7ef393d72d251a048040e750c2953d45cc998f5b7184456564499
+    container_name: proxcenter
+    restart: unless-stopped
+    ports:
+      - "${PROXCENTER_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+      APP_SECRET: ${APP_SECRET}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${PROXCENTER_URL}
+      APP_URL: ${PROXCENTER_URL}
+      PROXCENTER_INSTANCE_ID: ${PROXCENTER_INSTANCE_ID:-proxcenter}
+      SESSION_IDLE_TIMEOUT: ${SESSION_IDLE_TIMEOUT:-}
+      SESSION_ABSOLUTE_TIMEOUT: ${SESSION_ABSOLUTE_TIMEOUT:-}
+      PROXCENTER_SETUP_TOKEN: ${PROXCENTER_SETUP_TOKEN}
+    volumes:
+      - ${DATA_ROOT:-./data}:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
